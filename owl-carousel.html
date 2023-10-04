@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            overflow: hidden;
+            width: 100%;
+        }
+        img{
+            filter: grayscale(100%);
+        }
+        
+        #news-slider {
+            margin-top: 80px;
+            background-color: #1a1a1a;
+            padding-bottom: 5%;
+        }
+        
+        .col-md-12{
+            background-color: #1a1a1a;
+        }
+    
+    
+        .post-slide {
+            background: #1a1a1a;
+            margin: 20px 15px 20px;
+            border-radius: 15px;
+            min-height: 400px;
+            padding-top: 1px;
+            box-shadow: 0px 14px 22px -9px #000000;
+        }
+        
+        .post-slide .post-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            margin: -12px 15px 8px 15px;
+            margin-left: -10px;
+        }
+        
+        .post-slide .post-img img {
+            width: 100%;
+            height: auto;
+            transform: scale(1, 1);
+            transition: transform 0.2s linear;
+        }
+        
+        .post-slide:hover .post-img img {
+            transform: scale(1.1, 1.1);
+        }
+        
+        .post-slide .over-layer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            background: linear-gradient(-45deg, rgba(6, 189, 244, 0.475) 0%, rgba(45, 111, 253, 0.338) 0%);
+            transition: all 0.50s linear;
+        }
+        
+        .post-slide:hover .over-layer {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .post-slide:hover img {
+            filter: grayscale(0);
+        }
+        
+        .post-slide .over-layer i {
+            position: relative;
+            top: 45%;
+            text-align: center;
+            display: block;
+            color: #fff;
+            font-size: 25px;
+        }
+        
+        .post-slide .post-content {
+            color: #fff;
+            background: #1a1a1a;
+            border-radius: 15px;
+            margin: 5%;
+        }
+        
+        .post-slide .post-title a {
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+            display: inline-block;
+            text-transform: uppercase;
+            transition: all 0.3s ease 0s;
+        }
+        
+        .post-slide .post-title a:hover+img {
+            text-decoration: none;
+            filter: grayscale(0%);
+        }
+        
+        .post-slide .post-description {
+            line-height: 24px;
+            color: #fff;
+            margin: 20px 0 25px 0;
+        }
+        
+        .post-slide .post-date {
+            color: #fff;
+            font-size: 14px;
+        }
+        
+        .post-slide .post-date i {
+            font-size: 20px;
+            margin-right: 8px;
+            color: #fff;
+        }
+        
+        .post-slide .read-more {
+            position: absolute;
+            padding: 7px 20px;
+            float: right;
+            right: 10%;
+            bottom: 10%;
+            font-size: 12px;
+            font-weight: 600;
+            background: #1a1a1a;
+            color: #fff;
+            box-shadow: 0px 10px 10px -15px #1376c5;
+            border-radius: 25px;
+            border: 1px solid #fff;
+            text-transform: uppercase;
+        }
+        
+        .post-slide .read-more:hover {
+            background: #fff;
+            text-decoration: none;
+            color: #1a1a1a;
+            border-color: #1a1a1a;
+        }
+        
+        .owl-controls .owl-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .owl-controls .owl-buttons .owl-prev {
+            background: #151515;
+            position: absolute;
+            top: -15%;
+            left: 20px;
+            padding: 0 18px 0 15px;
+            border-radius: 50px;
+            box-shadow: 3px 14px 25px -15px #fff;
+            transition: background 0.5s ease 0s;
+        }
+        
+        .owl-controls .owl-buttons .owl-next {
+            background: #151515;
+            position: absolute;
+            top: -15%;
+            right: 30px;
+            padding: 0 15px 0 18px;
+            border-radius: 50px;
+            box-shadow: -3px 10px 20px -15px #fff;
+            transition: background 0.5s ease 0s;
+        }
+        
+        .owl-controls .owl-buttons .owl-prev:after,
+        .owl-controls .owl-buttons .owl-next:after {
+            content: "\f104";
+            font-family: FontAwesome;
+            color: #fff;
+            font-size: 30px;
+        }
+        
+        .owl-controls .owl-buttons .owl-next:after {
+            content: "\f105";
+        }
+
+        @media only screen and (max-width:1280px) {
+            .post-slide .post-content {
+                padding: 0px 15px 25px 15px;
+            }
+        }
+    </style>
+    
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="news-slider" class="owl-carousel">
+                <div class="post-slide">
+                    <div class="post-img">
+                        <img src="./img/dsl.webp" alt="">
+                        <a href="http://dslblockchain.com/" target="_blank" class="over-layer"><i class="fa fa-link"></i></a>
+                    </div>
+                    <div class="post-content">
+                        <h4>DSL Blockchain Solutions</h4>
+                        <p>Get your Blockchain Project Started with Cutting-edge Expertise</p>
+                        <span class="post-date"><i class="fa fa-clock-o"></i>Out 27, 2019</span>
+                        <a href="http://dslblockchain.com/" class="read-more">Visit Site</a>
+                    </div>
+                </div>
+    
+                <div class="post-slide">
+                    <div class="post-img">
+                        <img src="./img/gmr.webp" alt="">
+                        <a href="https://gmrcatering.in/" target="_blank" class="over-layer"><i class="fa fa-link"></i></a>
+                    </div>
+                    <div class="post-content">
+                        <h4>GMR Catering</h4>
+                        <p>Catering Service - Marriage and all function incl political festivals</p>
+                        <span class="post-date"><i class="fa fa-clock-o"></i>Out 27, 2019</span>
+                        <a href="https://gmrcatering.in/" target="_blank" class="read-more">Visit Site</a>
+                    </div>
+                </div>
+    
+                <div class="post-slide">
+                    <div class="post-img">
+                        <img src="./img/mda_logo.webp" style="width: 60%;margin:0 10% 0 20%;border-radius:50%;" alt="">
+                        <a href="https://madrasdefenceacademy.in/" target="_blank" class="over-layer"><i class="fa fa-link"></i></a>
+                    </div>
+                    <div class="post-content">
+                        <h4>Madras Defence Academy</h4>
+                        <p>The one-stop centre for Defence Exams and interviews</p>
+                        <span class="post-date"><i class="fa fa-clock-o"></i>Out 27, 2019</span>
+                        <a href="https://madrasdefenceacademy.in/" target="_blank" class="read-more">Visit Site</a>
+                    </div>
+                </div>
+    
+                <div class="post-slide">
+                    <div class="post-img">
+                        <img src="./img/vzeal_web.webp" alt="">
+                        <a href="https://vzealgroups.in/" target="_blank" class="over-layer"><i class="fa fa-link"></i></a>
+                    </div>
+                    <div class="post-content">
+                        <h4>VZEAL Groups</h4>
+                        <p>Virtual World of Idol places</p>
+                        <span class="post-date"><i class="fa fa-clock-o"></i>Out 27, 2019</span>
+                        <a href="https://vzealgroups.in/" target="_blank" class="read-more">Visit Site</a>
+                    </div>
+                </div>
+    
+                <div class="post-slide">
+                    <div class="post-img">
+                        <img src="./img/hlo_logo.webp" style="width: 56%;margin:0 20% 0 24%;" alt="">
+                        <a href="#" class="over-layer"><i class="fa fa-link"></i></a>
+                    </div>
+                    <div class="post-content">
+                        <h4>HLO ID</h4>
+                        <p>HLO Environment</p>
+                        <span class="post-date"><i class="fa fa-clock-o"></i>Out 27, 2019</span>
+                        <a href="#" class="read-more">Visit Site</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+<script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js'></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#news-slider").owlCarousel({
+        items: 3,
+        itemsDesktop: [1199, 3],
+        itemsDesktopSmall: [980, 2],
+        itemsMobile: [600, 1],
+        navigation: true,
+        navigationText: ["", ""],
+        pagination: true,
+        autoPlay: true });
+        
+        });
+</script>
+
+</body>
+</html>
+
