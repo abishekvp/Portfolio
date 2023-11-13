@@ -203,21 +203,22 @@ function usermesg() {
 
 function reply(inputmesg) {
     inputmesg = inputmesg.toLowerCase().trim();
-    if(inputmesg.match("vanakam") || inputmesg.match("hi da") || inputmesg.match("vanakam da")){
-        botmesg("Vanakam da mapla");
+    if(inputmesg.match("vanakam") || inputmesg.match("hi da") || inputmesg.match("vanakam da") || inputmesg.match("dei") || inputmesg.match("mairu") || inputmesg.match("mair")){
+        botmesg("Hi da punda");
+        setTimeout(function () { botmesg("soldra mairu") }, 1500);
     }
     else if(inputmesg.match("intro")){
         botmesg("Greetings, I am Abi,");
         botmesg("<p id='greet_intro'>your go-to source for answering questions and dispelling doubts. Abishek is here to elevate your business acumen and offer insights into the world of tech.</p>");
     }
     else if(inputmesg.match("help")){
-        botmesg("'service' to know what are services we do<br>'tech u use' to get what technologies we use");
+        botmesg("'service' to know what are services I do<br>'tech u use' to get what technologies I use");
     }
     else if(inputmesg.match("service") || inputmesg.match("services")){
         botmesg("- Dynamic Webiste<br>- Static Website<br>- Branding<br>- Business Consultancy");
     }
     else if(inputmesg.match("tech u use") || inputmesg.match("tech you use")){
-        botmesg("- MERN Stack<br>- Selenium (Web Automation Tool)<br>- Web Scraping<br>- Text-to-Speech and<br>- Speech-to-text<br>- Both Linear and Document type Database");
+        botmesg("- DJango<br>- MERN Stack<br>- Web Automation<br>- Web Scraping<br>- Text-to-Speech and<br>- Speech-to-text<br>- Both Linear and Document type Database");
     }
     else if(inputmesg.match("hello") || inputmesg.match("hi")){
         botmesg("Hello, text your doubt I will clarify as my knowledge Text 'help' to know about commands")
@@ -257,12 +258,66 @@ function reply(inputmesg) {
     }
     else if(inputmesg.match("how to")){
         if(inputmesg.match("develop a website")){
-            botmesg("1. Make a file structure - initally create folder Ex:'proj_name' inside the folder, create folders js, css, img and create file index.html");
-            setTimeout(function () { botmesg("2. Create CSS file Ex:index.css in 'css' folder and Js file Ex:script.js in 'js' folder and save all images in 'img' folder") }, 1500);
-            setTimeout(function () { botmesg("3. Write your HTML code in index.html and if you need additional html file then create and write html code") }, 1500);
-            setTimeout(function () { botmesg("4. ") }, 1500);
-            setTimeout(function () { botmesg("3. ") }, 1500);
-            setTimeout(function () { botmesg("3. ") }, 1500);
+            botmesg("1. Plan Your Content:<br>Outline the content you want on your website. This includes deciding on the number of pages and organizing the information logically.");
+            setTimeout(function () { botmesg("2. Create HTML Pages:<br>Write HTML code for each page of your website. HTML provides the structure and content of your site. For example:") }, 1500);
+            setTimeout(function () { botmesg("HTML Code") }, 500);
+            setTimeout(function () { botmesg(`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Your Website Title</title>
+            </head>
+            <body>
+                <header>
+                    <h1>Your Website Heading</h1>
+                </header>
+                <nav>
+                    <!-- Navigation links if needed -->
+                </nav>
+                <section>
+                    <h2>Section Title</h2>
+                    <p>Your content goes here.</p>
+                </section>
+                <footer>
+                    <p>&copy; 2023 Your Website Name</p>
+                </footer>
+            </body>
+            </html>
+            `) }, 500);
+            setTimeout(function () { botmesg("3. Create CSS Stylesheet:<br>Add a separate CSS file to style your HTML content. This enhances the visual appeal of your website. For example: ") }, 1500);
+            setTimeout(function () { botmesg("CSS Code") }, 1500);
+            setTimeout(function () { botmesg(`
+            body {<br>
+                font-family: Arial, sans-serif;<br>
+                margin: 0;<br>
+                padding: 0;<br>
+                background-color: #f4f4f4;<br>
+            }<br>
+            header {<br>
+                background-color: #333;<br>
+                color: white;<br>
+                text-align: center;<br>
+                padding: 1em;<br>
+            }<br>
+            section {<br>
+                max-width: 800px;<br>
+                margin: 0 auto;<br>
+                padding: 20px;<br>
+            }<br>
+            footer {<br>
+                background-color: #333;<br>
+                color: white;<br>
+                text-align: center;<br>
+                padding: 1em;<br>
+                position: fixed;<br>
+                bottom: 0;<br>
+                width: 100%;<br>
+            }<br>
+            `) }, 1500);
+            setTimeout(function () { botmesg("4. Link CSS to HTML:<br>Connect your CSS stylesheet to your HTML pages using the <link> tag in the <head> section.") }, 500);
+            setTimeout(function () { botmesg(```<link rel="stylesheet" type="text/css" href="styles.css">```) }, 500);
         }
     }
     else{
