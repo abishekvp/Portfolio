@@ -124,16 +124,8 @@ function intro(){
 }
 
 function openchatbot(){
-    if(c>2){
-        alert("ada pundaa ena mairukuda open panni, open panni, close pandraaa mairandi,...");
-        window.c=1;
-    }
-    if(c===0){
-		c=c+1;
-        document.getElementById("message_box").innerHTML = "";
-		setTimeout(function () { reply('intro') }, 500);
-
-    }
+	document.getElementById("message_box").innerHTML = "";
+	setTimeout(function () { reply('intro') }, 500);
     if(document.getElementById("openbotbutton").textContent==="X"){
         document.getElementById("openbotbutton").textContent = "Chat to Bot";
         document.getElementById("myScrollable").style.opacity = "0";
