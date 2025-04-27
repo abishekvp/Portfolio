@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% if user.is_authenticated %}
+{% if request.user.is_authenticated %}
 {% block index %}
     <div class="grid-wrapper sidebar-bg bg1">
 
