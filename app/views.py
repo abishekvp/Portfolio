@@ -9,8 +9,11 @@ from app import models as md
 
 # Custom pages
 def home(request):
-    key_values = md.KeyValue.objects.all()
-    return render(request, 'home.html', {'key_values': key_values})
+    if request.user.is_authenticated:
+        key_values = md.KeyValue.objects.all()
+        return render(request, 'home.html', {'key_values': key_values})
+    else:
+        return redirect('/signin')
 
 
 # Data manage
