@@ -90,11 +90,10 @@
                             Hello World
                         </div>
 
-                        <h1 class="text-huge-title">
+                        <h1 class="text-huge-title" id="content-main_title">
                             I am Abishek VP, <br>
-                            an Engineer <br>
-                            & Proffesional <br> 
-                            Developer<br>.
+                            A Proffesional Engineer <br>
+                            & Software Developer .
                         </h1>
                     </div>
 
@@ -132,13 +131,7 @@
                             <h2 class="text-pretitle with-line" data-animate-el>
                                 About
                             </h2>
-                            <p class="attention-getter" data-animate-el>
-                                Accomplished and detail-oriented professional with expertise in Software.
-Proven track record of delivering high-quality solutions aligned with business goals.
-Adept at driving innovation, optimizing processes, and ensuring operational excellence.
-Committed to continuous professional development and strategic collaboration.
-Dedicated to contributing value and achieving measurable success in every engagement.
-                            </p>
+                            <p class="attention-getter" data-animate-el id="content-about"></p>
                             <a href="#0" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
 
                         </div>
@@ -152,12 +145,7 @@ Dedicated to contributing value and achieving measurable success in every engage
                         <h2 class="text-pretitle" data-animate-el>Expertise</h2>
 
                         <ul class="skills-list h1" data-animate-el>
-                            <li>Visual Design</li>
-                            <li>Branding Identity</li>
-                            <li>UI Design</li>
-                            <li>Product Design</li>
-                            <li>Prototyping</li>
-                            <li>Illustration</li>
+                            <li>"Experienced Software Engineer with expertise in building scalable web applications, cloud-native solutions, and API integrations. Passionate about delivering high-quality software aligned with business goals."</li>
                         </ul>
 
                     </div>
@@ -643,6 +631,40 @@ Dedicated to contributing value and achieving measurable success in every engage
 
     </div> <!-- end -s-pagewrap -->
 
+    <script>
+        fetch('https://abiraj.pythonanywhere.com/get-key-value-dict')
+            .then(response => response.json())
+            .then(data => {
+            if (data.status_code === 200) {
+                data.data.forEach(item => {
+                localStorage.setItem(item.key, JSON.stringify({
+                    html: item.html,
+                    value: item.value
+                }));
+                });
+                loadContent(); // Call load function after data is fetched and stored
+            } else {
+                console.error('Failed to fetch data');
+            }
+            })
+            .catch(error => console.error('Error:', error));
+
+        function loadContent() {
+            Object.keys(localStorage).forEach(key => {
+            const newKey = `content-${key}`;
+            const data = JSON.parse(localStorage.getItem(key));
+            localStorage.setItem(newKey, JSON.stringify(data));
+            const element = document.getElementById(newKey);
+            if (element) {
+                if (data.html) {
+                element.innerHTML = data.value;
+                } else {
+                element.innerText = data.value;
+                }
+            }
+            });
+        }
+    </script>
 
     <!-- Java Script
     ================================================== -->
