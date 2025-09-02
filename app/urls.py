@@ -7,16 +7,44 @@ urlpatterns = [
     path('signup', views.signup, name="signup"),
     path('signin', views.signin, name="signin"),
     path('signout', views.signout, name="signout"),
-    path('dashboard', views.dashboard, name="dashboard"),
-    
+
+    path('get-data', csrf_exempt(views.get_data)),
+    path('portfolio', csrf_exempt(views.portfolio)),
+    path('view-testimonials', views.view_testimonials, name='view-testimonials'),
+
     # Custom pages
     path('', views.home, name="home"),
+    path('dashboard', views.home, name="dashboard"),
     path('home', views.home, name="home"),
     
+    path('testimonials', views.testimonials, name="testimonials"),
+    path('submit-testimonial', csrf_exempt(views.submit_testimonial)),
+    path('approve-testimonial/<int:id>', views.approve_testimonial),
+    path('disapprove-testimonial/<int:id>', views.disapprove_testimonial),
+    path('disable-testimonial/<int:id>', views.disable_testimonial),
+    path('enable-testimonial/<int:id>', views.enable_testimonial),
+    path('delete-testimonial/<int:id>', views.delete_testimonial),
+    path('view-testimonial', views.view_testimonial),
+
+    path('experience', views.experience, name="experience"),
+    path('projects', views.projects, name="projects"),
+    path('get-project/<int:id>', views.get_project),
+    path('delete-project/<int:id>', views.delete_project),
+
+    path('settings', views.settings, name="settings"),
+    path('skills', views.skills, name="skills"),
+    path('get-skill/<int:id>', views.get_skill, name="get_skill"),
+    path('delete-skill/<int:id>', views.delete_skill, name="delete_skill"),
+    path('delete-experience/<int:id>', views.delete_experience, name='delete-experience'),
+    path('get-experience/<int:id>', views.get_experience),
+
     # Data manage
     path('add-key-value-data', views.add_key_value_data),
     path('get-key-value-data', views.get_key_value_data),
+    path('get-key-value', views.get_key_value),
+    path('delete-key-value/<int:id>', views.delete_key_value),
     path('get-key-value-dict', views.get_key_value_dict),
+    path('get-ids', views.get_ids),
 
     # template elements
     path('cp_datetime', views.cp_datetime),

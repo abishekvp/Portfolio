@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Skills - P.M{% endblock title %}
+{% block main %}
+    <!-- BOF MAIN -->
+    <div class="main">
+
+        <!-- BOF Breadcrumb -->
+        <div class="row">
+            <div class="col">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="ti-home"></i> Dashboard</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- EOF Breadcrumb -->
+        <div class="row">
+            <div class="col">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="caption uppercase">
+                            <i class="ti-briefcase"></i> Skills
+                        </div>
+                        <div class="tools">
+                            <span data-toggle="modal" data-target="#addSkillModal" class="btn btn-sm btn-primary"><i class="ti-plus"></i></span>
+                            <span class="btn btn-outline-secondary"><i class="ti-settings"></i></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover init-datatable" id="">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>SKILL</th>
+                                        <th>LEVEL</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in table_data %}
+                                    <tr>
+                                        <td>{{ data.id }}</td>
+                                        <td>{{ data.name }}</td>
+                                        <td>{{ data.level }}</td>
+                                        <td style="margin: auto; display: flex; justify-content: center;">
+                                            <button style="margin: 10px;" id="{{ data.id }}" onclick="editSkill(this.id)" class="btn btn-outline-primary"><i class="ti-pencil-alt"></i></button>
+                                            <button style="margin: 10px;" id="{{ data.id }}" onclick="deleteSkill(this.id)" class="btn btn-outline-danger"><i class="ti-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EOF MAIN -->
+{% endblock %}

@@ -1,4 +1,7 @@
 function notify(message, mode){
+    if (!message || !mode){
+        return
+    }
     switch (mode) {
         case INFO:
             toastr.info(message);
@@ -21,19 +24,7 @@ function notify(message, mode){
 function handleResponse(response, noti){
     var status = response.status_code;
     var message = response.message;
-    if (status == undefined || message == undefined){
-        notify('Something went wrong!', ERROR);
-        return
-    }
-    var return_message = '';
     var mode;
-    if (status){
-        return_message = return_message + status;
-        return_message = return_message + ' ';
-    }
-    if (message){
-        return_message = return_message + message;
-    }
     if (status == 200){
         mode = SUCCESS;
     } else if (status == 403){
@@ -43,8 +34,8 @@ function handleResponse(response, noti){
     } else {
         mode = ERROR;
     }    
-    if (noti){
-        notify(return_message, mode);
+    if (message && mode){
+        notify(message, mode);
     }
     if (response.data) {
         return response.data;
@@ -77,87 +68,88 @@ function ajaxcall(url, method, data, noti){
                 }
             },
             error: function (error) {
-                notify(error.status + ': ' + error.statusText, ERROR);
+                if (error.status && error.statusText){
+                    notify(error.status + ': ' + error.statusText, ERROR);
+                }
                 reject(error);
             }
         });
     });
 }
 
-
-function loadTableWithHeaders(tableHead, tableBody, dataList) {
-    tableHead = document.getElementById(tableHead);
-    tableBody = document.getElementById(tableBody);
-    
-    tableHead.innerHTML = '';
-    tableBody.innerHTML = '';
-
-    if (!dataList.length) {
-        tableBody.innerHTML = '<tr><td colspan="100%">No data found</td></tr>';
-        return;
-    }
-
-    let firstRow = dataList[0];
-    for (let key in firstRow) {
-        if (firstRow.hasOwnProperty(key)) {
-            let th = document.createElement('th');
-            th.innerText = key.toUpperCase();
-            tableHead.appendChild(th);
-        }
-    }
-
-    dataList.forEach(data => {
-        let row = document.createElement('tr');
-        for (let key in data) {
-            if (data.hasOwnProperty(key)) {
-                let cell = document.createElement('td');
-                cell.innerText = data[key];
-                row.appendChild(cell);
-            }
-        }
-        tableBody.appendChild(row);
-    });
-}
-
-
-function loadData(tableId, dataList) {
-    let tableBody = document.getElementById(tableId);
-    tableBody.innerHTML = '';
-
-    if (!dataList.length) {
-        tableBody.innerHTML = '<tr><td colspan="100%">No data found</td></tr>';
-        return;
-    }
-
-    dataList.forEach(data => {
-        let row = document.createElement('tr');
-
-        for (let key in data) {
-            if (data.hasOwnProperty(key)) {
-                let cell = document.createElement('td');
-                cell.innerText = data[key];
-                row.appendChild(cell);
-            }
-        }
-
-        tableBody.appendChild(row);
-    });
-}
-
-function getKeyValueData(){
-    ajaxcall('/get-key-value-data', 'GET', null, true).then(response => {
-        loadTableWithHeaders('key-value-data-head', 'key-value-data-body', response);
-    }).catch(error => {
-        notify('Error fetching key-value data: ' + error, ERROR);
-    });
-}
-
-function addKeyValueData(){
+function editData(id){
     var data = {
-        'key': $('#data-key').val(),
-        'value': $('#data-value').val(),
-        'raw-html': $('#raw-html').val()
+        'id': id,
     }
-    ajaxcall('/add-key-value-data', POST, data, true);
-    getKeyValueData();
+    ajaxcall('/get-key-value', POST, data, true).then(response => {
+        $('#editKeyValue').modal('show');
+        $('#edit-data-key').val(response.key);
+        $('#edit-data-value').val(response.value);
+        if (response.html){
+            $('#edit-raw-html').prop('checked', true)
+        }
+    })
+}
+
+function approveTestimonial(id){
+    var data = {
+        'id': id,
+    }
+    ajaxcall('/approve-testimonial', POST, data, true)
+}
+
+function viewTestimonial(id){
+    var data = {
+        'id': id,
+    }
+    ajaxcall('/view-testimonial', POST, data, true).then(response => {
+        // Handle the response here
+        if (response) {
+            $('#testimonial-name').text(response.name);
+            $('#testimonial-position').text(response.position);
+            $('#testimonial-company').text(response.company);
+            $('#testimonial-message').text(response.message);
+            $('#testimonialModal').modal('show');
+        }
+    })
+}
+
+function disapproveTestimonial(id){
+    var data = {
+        'id': id,
+    }
+    ajaxcall('/disapprove-testimonial', POST, data, true)
+}
+
+function editSkill(id){
+    ajaxcall('/get-skill/'+id, GET, undefined, true).then(response => {
+        $('#editSkill').modal('show');
+        $('#edit-skill-id').val(response.id);
+        $('#edit-skill-name').val(response.name);
+        $('#edit-skill-level').val(response.level);
+    })
+}
+
+function confirmModal(message) {
+    return new Promise((resolve) => {
+        $('#modal-confirmation-message').text(message);
+        $('#confirmModal').modal('show');
+
+        $('#confirmButton').off('click').on('click', function() {
+            $('#confirmModal').modal('hide');
+            resolve(true);
+        });
+
+        $('#cancelButton').off('click').on('click', function() {
+            $('#confirmModal').modal('hide');
+            resolve(false);
+        });
+    });
+}
+
+async function deleteSkill(id) {
+    let confirmed = await confirmModal("Are you sure you want to delete this skill?");
+    if (confirmed) {
+        window.location.href = '/delete-skill/' + id;
+    }
 }

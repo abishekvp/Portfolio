@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/siqtheme.css' %}">
 
+    <script src="{% static 'js/constants.js' %}"></script>
+    <script src="{% static 'assets/scripts/siqtheme.js' %}"></script>
+    <script src="{% static 'assets/scripts/pages/tb_datatables.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/function.js' %}"></script>
+
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'assets/css/pages/dashboard1.css' %}">
@@ -22,39 +28,71 @@
 
 <body class="theme-dark overflow-x-hidden">
     <meta name="csrf-token" content="{{ csrf_token }}">
-    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" hidden>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                var messageType = "{{ message.level_tag }}";
+                var messageText = "{{ message|escapejs }}";
+                if (messageType === "success") {
+                    notify_success(messageText);
+                } else if (messageType === "warning") {
+                    notify_warning(messageText);
+                } else if (messageType === "error") {
+                    notify_error(messageText);
+                } else if (messageType === "info") {
+                    notify_info(messageText);
+                } else {
+                    notify(messageText);
+                }
+            </script>
+        {% endfor %}
+    {% endif %}
     <!-- Website block -->
     {% block index %}{% endblock %}
 
     <!-- Sign In and Up block -->
     {% block sign %}{% endblock %}
 
-    <!-- Modals -->
-    <div class="modal fade" id="addKeyValue" tabindex="-1" role="dialog" aria-labelledby="addKeyValueTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+    <!-- Confirm Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addKeyValueTitle">Vertically Centered Modal</h5>
+                    <h5 class="modal-title" id="confirmModalLabel">Confirm Action</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- BOF MAIN-BODY -->
-                    <div class="row">
-                        <!-- BOF General Form -->
-                        <div class="col-lg-12">
-                            <div class="card mb-3">
-                                <form role="form">
-                                    <!-- <div class="card-header uppercase">
-                                        <div class="caption">
-                                            <i class="ti-briefcase"></i> General Form
-                                        </div>
-                                        <div class="tools">
-                                            <a href="#" class="btn btn-outline-secondary"><i class="ti-pencil-alt"></i></a>
-                                            <a href="#" class="btn btn-outline-secondary"><i class="ti-settings"></i></a>
-                                        </div>
-                                    </div> -->
+                    <h4 id="modal-confirmation-message"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmButton">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="addKeyValue" tabindex="-1" role="dialog" aria-labelledby="addKeyValueTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+            <form role="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addKeyValueTitle">Key Value Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- BOF MAIN-BODY -->
+                        <div class="row">
+                            <!-- BOF General Form -->
+                            <div class="col-lg-12">
+                                <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <div class="input-group">
@@ -73,6 +111,18 @@
                                                 <textarea cols="64" rows="10" name="data-value" id="data-value" class="form-control" placeholder="Write about..."></textarea>
                                             </div>
                                         </div>
+                                        <h4><strong><center>or</center></strong></h4>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ti-export"></i></span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" id="site-image" name="site-image" accept="image/*" class="custom-file-input">
+                                                    <label class="custom-file-label">Image</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-checkbox">
                                             <label>
                                                 <input type="checkbox" name="raw-html" id="raw-html">
@@ -81,29 +131,698 @@
                                             </label>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
+                            <!-- EOF General Form -->
                         </div>
                         <!-- EOF General Form -->
                     </div>
-                    <!-- EOF General Form -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-primary">Add</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" onclick="addKeyValueData()">Add</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
-    <!-- JS Imports -->
-    <script src="{% static 'js/constants.js' %}"></script>
-    <script src="{% static 'assets/scripts/jquery.in.js.js' %}"></script>
-    <script src="{% static 'assets/scripts/siqtheme.js' %}"></script>
-    <script src="{% static 'assets/scripts/pages/dashboard1.js' %}"></script>
-    <script src="{% static 'assets/scripts/page.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/function.js' %}"></script>
-</body>
+    <!-- Modals -->
+    <div class="modal fade" id="editKeyValue" tabindex="-1" role="dialog" aria-labelledby="editKeyValueTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+            <form role="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editKeyValueTitle">Key Value Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- BOF MAIN-BODY -->
+                        <div class="row">
+                            <!-- BOF General Form -->
+                            <div class="col-lg-12">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Data Key</span>
+                                                </div>
+                                                <input type="text" name="edit-data-key" id="edit-data-key" class="form-control" autocomplete="off" placeholder="Key for Data" title="Only alphabetic characters and underscores are allowed." oninput="this.value = this.value.replace(/[^a-zA-Z_]/g, '');">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Key Data Value</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ti-info-alt"></i></span>
+                                                </div>
+                                                <textarea cols="64" rows="10" name="edit-data-value" id="edit-data-value" class="form-control" placeholder="Write about..."></textarea>
+                                            </div>
+                                        </div>
+                                        <h4><strong><center>or</center></strong></h4>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ti-export"></i></span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" id="edit-site-image" name="edit-site-image" accept="image/*" class="custom-file-input">
+                                                    <label class="custom-file-label">Image</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-checkbox">
+                                            <label>
+                                                <input type="checkbox" name="edit-raw-html" id="edit-raw-html">
+                                                <span class="checkmark"><i class="fa fa-check"></i></span>
+                                                Raw HTML
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- EOF General Form -->
+                        </div>
+                        <!-- EOF General Form -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
+    <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="experienceModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <form method="post" class="modal-content">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="experienceModalTitle">Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- BOF MAIN-BODY -->
+                    <div class="row">
+                        <!-- BOF General Form -->
+                        <div class="col-lg-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Title / Position</span>
+                                            </div>
+                                            <input type="text" name="position-title" class="form-control" id="position-title"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Organization / Company</span>
+                                            </div>
+                                            <input type="text" name="experience-company" class="form-control" id="experience-company"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">From</span>
+                                            </div>
+                                            <input type="date" name="experience-start" class="form-control">
+                                        </div>
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">To</span>
+                                            </div>
+                                            <input type="date" name="experience-end" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="experience-description">Experience Description</label>
+                                        <div class="input-group">
+                                            <textarea name="experience-description" class="form-control" id="experience-description" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Experience Points</label>
+                                        <div class="d-flex mb-2">
+                                            <input type="text" id="point-input" class="form-control mr-2" placeholder="Enter a point">
+                                            <button type="button" id="add-point" class="btn btn-success">+</button>
+                                        </div>
+                                        <div id="points-container" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Skills Used / Learned</label>
+                                        <div class="d-flex flex-wrap">
+                                            {% for skill in skills %}
+                                                <label class="mr-3"><input type="checkbox" name="experience_skills[]" value="{{ skill.id }}" title="{{ skill.name }}"> {{ skill.name }}</label>
+                                            {% endfor %}
+                                        </div>
+                                        <div id="selected-skills" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Add</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            document.getElementById("add-point").addEventListener("click", function() {
+                let input = document.getElementById("point-input");
+                let text = input.value.trim();
+                if (text) {
+                    let div = document.createElement("div");
+                    div.className = "alert alert-secondary d-flex justify-content-between align-items-center py-1 px-2";
+                    div.innerHTML = `
+                        <span>${text}</span>
+                        <input type="hidden" name="experience_points[]" value="${text}">
+                        <button type="button" class="btn btn-sm btn-danger remove-point">&times;</button>
+                    `;
+                    document.getElementById("points-container").appendChild(div);
+                    input.value = "";
+                    div.querySelector(".remove-point").addEventListener("click", function() {
+                        div.remove();
+                    });
+                }
+            });
+    
+            document.querySelectorAll("input[name='experience_skills[]']").forEach(cb => {
+                cb.addEventListener("change", function() {
+                    let container = document.getElementById("selected-skills");
+                    let existing = container.querySelector(`[data-skill="${cb.value}"]`);
+                    if (cb.checked && !existing) {
+                        let skillDiv = document.createElement("span");
+                        skillDiv.className = "badge badge-primary p-2 m-1";
+                        skillDiv.dataset.skill = cb.value;
+                        skillDiv.innerHTML = `
+                            ${cb.title} <button type="button" class="btn btn-sm btn-light ml-1 remove-skill">&times;</button>
+                        `;
+                        container.appendChild(skillDiv);
+                        skillDiv.querySelector(".remove-skill").addEventListener("click", function() {
+                            cb.checked = false;
+                            skillDiv.remove();
+                        });
+                    } else if (!cb.checked && existing) {
+                        existing.remove();
+                    }
+                });
+            });
+        </script>
+    </div>
+
+    <div class="modal fade" id="editExperienceModal" tabindex="-1" role="dialog" aria-labelledby="editExperienceModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <form method="post" class="modal-content">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editExperienceModalTitle">Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- BOF MAIN-BODY -->
+                    <div class="row">
+                        <!-- BOF General Form -->
+                        <div class="col-lg-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <input type="hidden" id="edit-experience-id" name="edit-experience-id">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Title / Position</span>
+                                            </div>
+                                            <input type="text" id="position-title-edit" name="position-title-edit" class="form-control"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Organization / Company</span>
+                                            </div>
+                                            <input type="text" id="experience-company-edit" name="experience-company-edit" class="form-control"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">From</span>
+                                            </div>
+                                            <input type="month" id="experience-start-edit" name="experience-start-edit" class="form-control">
+                                        </div>
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">To</span>
+                                            </div>
+                                            <input type="month" id="experience-end-edit" name="experience-end-edit" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="experience-description">Experience Description</label>
+                                        <div class="input-group">
+                                            <textarea id="experience-description-edit" name="experience-description-edit" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Experience Points</label>
+                                        <div class="d-flex mb-2">
+                                            <input type="text" id="point-input-edit" class="form-control mr-2" placeholder="Enter a point">
+                                            <button type="button" id="add-point-edit" class="btn btn-success">+</button>
+                                        </div>
+                                        <div id="points-container-edit" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Skills Used / Learned</label>
+                                        <div class="d-flex flex-wrap" id="skills-list">
+                                            {% for skill in skills %}
+                                                <label class="mr-3"><input type="checkbox" id="experience_skills_{{ skill.id }}" name="experience_skills_edit[]" value="{{ skill.id }}" title="{{ skill.name }}"> {{ skill.name }}</label>
+                                            {% endfor %}
+                                        </div>
+                                        <div id="selected-skills-edit" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Update</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            document.getElementById("add-point-edit").addEventListener("click", function() {
+                let input = document.getElementById("point-input-edit");
+                let text = input.value.trim();
+                if (text) {
+                    let div = document.createElement("div");
+                    div.className = "alert alert-secondary d-flex justify-content-between align-items-center py-1 px-2";
+                    div.innerHTML = `
+                        <span>${text}</span>
+                        <input type="hidden" name="experience_points_edit[]" value="${text}">
+                        <button type="button" class="btn btn-sm btn-danger remove-point-edit">&times;</button>
+                    `;
+                    document.getElementById("points-container-edit").appendChild(div);
+                    input.value = "";
+                    div.querySelector(".remove-point-edit").addEventListener("click", function() {
+                        div.remove();
+                    });
+                }
+            });
+    
+            document.querySelectorAll("input[name='experience_skills_edit[]']").forEach(cb => {
+                cb.addEventListener("change", function() {
+                    let container = document.getElementById("selected-skills-edit");
+                    let existing = container.querySelector(`[data-skill="${cb.value}"]`);
+                    if (cb.checked && !existing) {
+                        let skillDiv = document.createElement("span");
+                        skillDiv.className = "badge badge-primary p-2 m-1";
+                        skillDiv.dataset.skill = cb.value;
+                        skillDiv.innerHTML = `
+                            ${cb.title} <button type="button" class="btn btn-sm btn-light ml-1 remove-skill-edit">&times;</button>
+                        `;
+                        container.appendChild(skillDiv);
+                        skillDiv.querySelector(".remove-skill-edit").addEventListener("click", function() {
+                            cb.checked = false;
+                            skillDiv.remove();
+                        });
+                    } else if (!cb.checked && existing) {
+                        existing.remove();
+                    }
+                });
+            });
+        </script>
+    </div>
+
+    <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <form method="post" class="modal-content" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProjectModalTitle">Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- BOF MAIN-BODY -->
+                    <div class="row">
+                        <!-- BOF General Form -->
+                        <div class="col-lg-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Project Title</span>
+                                            </div>
+                                            <input type="text" id="project-title" name="project-title" class="form-control"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Project link</span>
+                                            </div>
+                                            <input type="url" id="project-link" name="project-link" class="form-control">
+                                        </div>
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ti-export"></i></span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" id="project-image" name="project-image" accept="image/*" class="custom-file-input">
+                                                <label class="custom-file-label">Project image</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Project summary</span>
+                                            </div>
+                                            <input type="text" id="project-summary" name="project-summary" class="form-control"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="project-description">Project Description</label>
+                                        <div class="input-group">
+                                            <textarea id="project-description" name="project-description" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Project points</label>
+                                        <div class="d-flex mb-2">
+                                            <input type="text" id="project-point-input" class="form-control mr-2" placeholder="Enter a point">
+                                            <button type="button" id="project-add-point" class="btn btn-success">+</button>
+                                        </div>
+                                        <div id="project-points-container" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Project stack</label>
+                                        <div class="d-flex mb-2">
+                                            <input type="text" id="stack-input" class="form-control mr-2" placeholder="Enter a stack">
+                                            <button type="button" id="add-stack" class="btn btn-success">+</button>
+                                        </div>
+                                        <div id="stacks-container" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Add</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            document.getElementById("project-add-point").addEventListener("click", function() {
+                let input = document.getElementById("project-point-input");
+                let text = input.value.trim();
+                if (text) {
+                    let div = document.createElement("div");
+                    div.className = "alert alert-secondary d-flex justify-content-between align-items-center py-1 px-2";
+                    div.innerHTML = `
+                        <span>${text}</span>
+                        <input type="hidden" name="project_points[]" value="${text}">
+                        <button type="button" class="btn btn-sm btn-danger remove-project-point">&times;</button>
+                    `;
+                    document.getElementById("project-points-container").appendChild(div);
+                    input.value = "";
+                    div.querySelector(".remove-project-point").addEventListener("click", function() {
+                        div.remove();
+                    });
+                }
+            });
+            document.getElementById("add-stack").addEventListener("click", function() {
+                let input = document.getElementById("stack-input");
+                let text = input.value.trim();
+                if (text) {
+                    let div = document.createElement("div");
+                    div.className = "alert alert-secondary d-flex justify-content-between align-items-center py-1 px-2";
+                    div.innerHTML = `
+                        <span>${text}</span>
+                        <input type="hidden" name="project_stacks[]" value="${text}">
+                        <button type="button" class="btn btn-sm btn-danger remove-stack">&times;</button>
+                    `;
+                    document.getElementById("stacks-container").appendChild(div);
+                    input.value = "";
+                    div.querySelector(".remove-stack").addEventListener("click", function() {
+                        div.remove();
+                    });
+                }
+            });
+        </script>
+    </div>
+
+    <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <form method="post" class="modal-content" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProjectModalTitle">Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- BOF MAIN-BODY -->
+                    <div class="row">
+                        <!-- BOF General Form -->
+                        <div class="col-lg-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <input type="hidden" id="edit-project-id" name="edit-project-id">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Project Title</span>
+                                            </div>
+                                            <input type="text" id="edit-project-title" name="edit-project-title" class="form-control"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Project link</span>
+                                            </div>
+                                            <input type="url" id="edit-project-link" name="edit-project-link" class="form-control">
+                                        </div>
+                                        <div class="input-group col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ti-export"></i></span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" id="edit-project-image" name="edit-project-image" accept="image/*" class="custom-file-input">
+                                                <label class="custom-file-label">Project image</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Project summary</span>
+                                            </div>
+                                            <input type="text" id="edit-project-summary" name="edit-project-summary" class="form-control"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="project-description">Project Description</label>
+                                        <div class="input-group">
+                                            <textarea id="edit-project-description" name="edit-project-description" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Project points</label>
+                                        <div class="d-flex mb-2">
+                                            <input type="text" id="edit-project-point-input" class="form-control mr-2" placeholder="Enter a point">
+                                            <button type="button" id="edit-project-add-point" class="btn btn-success">+</button>
+                                        </div>
+                                        <div id="edit-project-points-container" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Project stack</label>
+                                        <div class="d-flex mb-2">
+                                            <input type="text" id="edit-stack-input" class="form-control mr-2" placeholder="Enter a stack">
+                                            <button type="button" id="edit-add-stack" class="btn btn-success">+</button>
+                                        </div>
+                                        <div id="edit-project-stacks-container" class="mt-2 dynamic-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Add</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            document.getElementById("edit-project-add-point").addEventListener("click", function() {
+                let input = document.getElementById("edit-project-point-input");
+                let text = input.value.trim();
+                if (text) {
+                    let div = document.createElement("div");
+                    div.className = "alert alert-secondary d-flex justify-content-between align-items-center py-1 px-2";
+                    div.innerHTML = `
+                        <span>${text}</span>
+                        <input type="hidden" name="edit_project_points[]" value="${text}">
+                        <button type="button" class="btn btn-sm btn-danger edit-remove-project-point">&times;</button>
+                    `;
+                    document.getElementById("edit-project-points-container").appendChild(div);
+                    input.value = "";
+                    div.querySelector(".edit-remove-project-point").addEventListener("click", function() {
+                        div.remove();
+                    });
+                }
+            });
+            document.getElementById("edit-add-stack").addEventListener("click", function() {
+                let input = document.getElementById("edit-stack-input");
+                let text = input.value.trim();
+                if (text) {
+                    let div = document.createElement("div");
+                    div.className = "alert alert-secondary d-flex justify-content-between align-items-center py-1 px-2";
+                    div.innerHTML = `
+                        <span>${text}</span>
+                        <input type="hidden" name="edit_project_stacks[]" value="${text}">
+                        <button type="button" class="btn btn-sm btn-danger edit-remove-project-stack">&times;</button>
+                    `;
+                    document.getElementById("edit-project-stacks-container").appendChild(div);
+                    input.value = "";
+                    div.querySelector(".edit-remove-project-stack").addEventListener("click", function() {
+                        div.remove();
+                    });
+                }
+            });
+        </script>
+    </div>
+    
+    <!-- Modals -->
+    <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+            <form role="form" method="POST">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSkillModalTitle">New Skill</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- BOF MAIN-BODY -->
+                        <div class="row">
+                            <!-- BOF General Form -->
+                            <div class="col-lg-12">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Skill name</span>
+                                                </div>
+                                                <input type="text" name="skill-name" id="skill-name" class="form-control" autocomplete="off" placeholder="Name of Skill">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Skill level</span>
+                                                </div>
+                                                <input type="input" name="skill-level" id="skill-level" class="form-control" autocomplete="off" placeholder="Level of Skill">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- EOF General Form -->
+                        </div>
+                        <!-- EOF General Form -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-primary">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="editSkillModal" tabindex="-1" role="dialog" aria-labelledby="editSkillModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+            <form role="form" method="POST">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editSkillModalTitle">Edit Skill</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- BOF MAIN-BODY -->
+                        <div class="row">
+                            <!-- BOF General Form -->
+                            <div class="col-lg-12">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="form-group" style="display: none;">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Skill ID</span>
+                                                </div>
+                                                <input type="number" name="edit-skill-id" id="edit-skill-id" class="form-control" autocomplete="off" placeholder="ID of Skill" hidden>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Skill name</span>
+                                                </div>
+                                                <input type="text" name="edit-skill-name" id="edit-skill-name" class="form-control" autocomplete="off" placeholder="Name of Skill">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Skill level</span>
+                                                </div>
+                                                <input type="text" name="edit-skill-level" id="edit-skill-level" class="form-control" autocomplete="off" placeholder="Level of Skill">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- EOF General Form -->
+                        </div>
+                        <!-- EOF General Form -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
 </html>

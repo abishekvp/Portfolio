@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js ss-preload" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Abishek VP</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'portfolio/css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'portfolio/favicon.svg' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'portfolio/favicon.svg' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'portfolio/favicon.svg' %}">
+
+</head>
+
+<body id="top">
+    <div id="preloader">
+        <div id="loader">
+        </div>
+    </div>
+    <div class="s-pagewrap">
+        <div class="circles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <header class="s-header">
+
+            <div class="header-mobile">
+                <span class="mobile-home-link"><a href="index.html">Abishek VP.</a></span>
+                <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
+            </div>
+
+            <div class="row wide main-nav-wrap">
+                <nav class="column lg-12 main-nav">
+                    <ul>
+                        <li><a href="index.html" class="home-link">Abishek VP.</a></li>
+                        <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
+                        <li><a href="#about" class="smoothscroll">About</a></li>
+                        <li><a href="#works" class="smoothscroll">Works</a></li>
+                        <li><a href="#people" class="smoothscroll">My People</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </header> <!-- end s-header -->
+
+        <main class="s-content">
+
+            <section id="testimonials">
+                <div class="row testimonials-list">
+                    <div class="column lg-12">
+                        <h2 class="text-pretitle with-line">Testimonials</h2>
+                        <div class="testimonials-container">
+                            {% for testimonial in testimonials %}
+                            <div class="testimonial-item">
+                                <p class="testimonial-message">{{ testimonial.message }}</p>
+                                <p class="testimonial-author">{{ testimonial.name }}, {{ testimonial.position }}, {{ testimonial.company }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="viewTestimonialModal" class="modal">
+                <div class="modal-content">
+                    <span id="closeViewTestimonial" class="modal-close">&times;</span>
+                    <h2 class="text-pretitle with-line" style="margin-bottom: 1rem;">Testimonials</h2>
+                    <div class="testimonials-list">
+                        <!-- Testimonials will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="testimonialModal" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close" id="close-testimonial-form">&times;</span>
+                    <h2 class="text-pretitle with-line" style="margin-bottom: 1rem;">Share Your Testimonial</h2>
+                    <form id="testimonialForm" autocomplete="off">
+                        <div class="row" style="display: flex;">
+                            <div class="column lg-6 md-6">
+                                <div class="form-field">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="testimonial-name" name="name" required placeholder="Name" class="u-fullwidth" aria-required="true" autofocus>
+                                </div>
+                                <div class="form-field">
+                                    <label for="position">Your Position/Title</label>
+                                    <input type="text" id="testimonial-position" name="position" required placeholder="Position / Role / Title" class="u-fullwidth">
+                                </div>
+                                <div class="form-field">
+                                    <label for="company">Company/Organization</label>
+                                    <input type="text" id="testimonial-company" name="company" placeholder="Company (optional)" class="u-fullwidth">
+                                </div>
+                            </div>
+                            <div class="column lg-6 md-6">
+                                <div class="form-field">
+                                    <label for="message">Testimonial</label>
+                                    <textarea id="testimonial-message" name="message" required placeholder="Your testimonial..." rows="8" class="u-fullwidth"></textarea>
+                                </div>
+                                <div class="form-field">
+                                    <label for="photo">Upload Photo</label>
+                                    <input type="file" id="testimonial-photo" name="photo" accept="image/*" class="u-fullwidth" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn--medium u-fullwidth contact-btn" onclick="submitTestimonial()">Submit Testimonial</button>
+                    </form>
+                </div>
+            </div>
+
+            <section id="contact" class="s-contact target-section">
+
+                <div class="row contact-top">
+                    <div class="column lg-12">
+                        <h2 class="text-pretitle">
+                            Get In Touch
+                        </h2>
+
+                        <p class="h1">
+                            I love to hear from you.
+                            Whether you have a question or just 
+                            want to chat about design, tech & art of engineering — shoot me a message.
+                        </p>
+                    </div>
+                </div> <!-- end contact-top -->
+
+                <div class="row contact-bottom">
+                    <div class="column lg-3 md-5 tab-6 stack-on-550 contact-block">
+                        <h3 class="text-pretitle">Reach me at</h3>
+                        <p class="contact-links">
+                            <span id="contact_mail"></span>
+                            <span id="mobile_number"></span>
+                        </p>
+                    </div>
+                    <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
+                        <h3 class="text-pretitle">Social</h3>
+                        <ul class="contact-social">
+                            <li id="linkedin"></li>
+                            <li id="github"></li>
+                            <li id="gmail"></li>
+                            <li id="instagram"></li>
+                            <li id="twitter"></li>
+                        </ul>
+                    </div>
+                    <div class="column lg-4 md-12 contact-block">
+                        <a href="mailto:{{email}}" class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
+                    </div>
+                </div> <!-- end contact-bottom -->
+            </section> <!-- end contact -->
+        </main> <!-- end s-content -->
+
+        <footer class="s-footer">
+            <div class="row">
+                <div class="column ss-copyright">
+                    <span>© Copyright Abishek VP <span id="currentYear"></span></span>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {document.getElementById('currentYear').textContent = new Date().getFullYear();});
+                    </script>
+                    <span>Powered by <a href="https://www.abishek.in/">Abiraj</a></span>
+                </div>
+
+                <div class="ss-go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 2.206l-6.235 7.528-.765-.645 7.521-9 7.479 9-.764.646-6.236-7.53v21.884h-1v-21.883z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </footer> <!-- end s-footer -->
+    </div> <!-- end -s-pagewrap -->
+    <script src="{% static 'portfolio/js/plugins.js' %}"></script>
+    <script src="{% static 'portfolio/js/main.js' %}"></script>
+</body>
+</html>
