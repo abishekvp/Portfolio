@@ -214,6 +214,7 @@ pre[class*="language-"] {
     height              : 100%;
     position            : relative;
     transition-property : transform;
+    max-width: 25%;
 }
 
 .swiper-slide-invisible-blank {

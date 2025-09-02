@@ -1,7 +1,329 @@
-/* ===================================================================
- * Abishek VP 1.0.0 - Main JS
- *
- * ------------------------------------------------------------------- */
+const server_url = 'http://localhost:3000';
+const get_data = server_url + '/get-key-value-dict';
+const get_ids = server_url + '/get-ids';
+const ids = [];
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetch(get_ids)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status_code === 200) {
+                ids.push(...data.data);
+            }
+            if (data.testimonials) {
+                loadTestimonials(data.testimonials);
+            }
+        })
+        .then(() => {
+            return fetch(get_data)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status_code === 200) {
+                        data.data.forEach(item => {
+                            item.value = item.value || item.image;
+                            localStorage.setItem(item.key, JSON.stringify({
+                                html: item.html,
+                                value: item.value
+                            }));
+                        });
+                    } else {
+                        console.error('Failed to fetch data');
+                    }
+                });
+        })
+        .then(() => {
+            ids.forEach(id => observeElement(id));
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+function loadTestimonials(testimonials) {
+    testimonials.forEach(testimonial => {
+        const testimonialElement = document.createElement('div');
+        testimonialElement.classList.add('testimonial-each');
+        testimonialElement.innerHTML = `
+            <div class="testimonial-profile">
+                <img src="data:image/${testimonial.photo.type};base64,${testimonial.photo}" alt="Author image">
+            </div>
+            <div class="testimonial-detail">
+                <cite>
+                    <strong class="text-pretitle with-line">${testimonial.name} - </strong>
+                    <span>${testimonial.position || ''}${testimonial.company ? ', ' + testimonial.company : ''}</span>
+                </cite>
+                <p>${testimonial.message}</p>
+            </div>
+        `;
+
+        document.querySelector('.testimonials-data').appendChild(testimonialElement);
+    });
+}
+
+function loadExperiences(experiences) {
+    experiences.forEach(experience => {
+        const experienceElement = document.createElement('div');
+        experienceElement.classList.add('timeline__block');
+        experienceElement.innerHTML = `
+            <div class="timeline__bullet"></div>
+            <div class="timeline__header">
+                <h4 class="timeline__title">${experience.company}</h4>
+                <h5 class="timeline__meta">${experience.title}</h5>
+                <p class="timeline__timeframe">${experience.start} - ${experience.end}</p>
+            </div>
+            <div class="timeline__desc">
+                <p>${experience.description}</p>
+            </div>
+        `;
+
+        document.getElementById('experiences').appendChild(experienceElement);
+    });
+}
+
+function loadProjects(projects) {
+    console.log(projects);
+    projects.forEach(project => {
+        console.log(project);
+        `
+        <li class="folio-list__item column" data-animate-el>
+            <a class="folio-list__item-link" href="#modal-1">
+                <div class="folio-list__item-pic">
+                    <img src="images/portfolio/minimalismo.jpg" 
+                            srcset="images/portfolio/minimalismo.jpg 1x, images/portfolio/minimalismo@2x.jpg 2x" alt="">
+                </div>
+                
+                <div class="folio-list__item-text">
+                    <div class="folio-list__item-cat">
+                        Branding
+                    </div>
+                    <div class="folio-list__item-title">
+                        Securden.
+                    </div>
+                </div>
+            </a>
+            <a class="folio-list__proj-link" href="#" title="project link">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+            </a>
+        </li>
+        `
+        const projectElement = `
+            <li class="folio-list__item column" data-animate-el>
+                <a class="folio-list__item-link" href="#modal-${project.id}">
+                    <div class="folio-list__item-pic">
+                        <img src="data:image/${project.image.type};base64,${project.image}" alt="${project.title}">
+                    </div>
+                    
+                    <div class="folio-list__item-text">
+                        <div class="folio-list__item-cat">
+                            Soft
+                        </div>
+                        <div class="folio-list__item-title">
+                            ${project.title}
+                        </div>
+                    </div>
+                </a>
+                <a class="folio-list__proj-link" href="${project.link}" title="project link">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </a>
+            </li>
+        `;
+        const modalElement = `
+            <div id="modal-${project.id}">
+                <div class="modal-popup">
+                    <img src="data:image/${project.image.type};base64,${project.image}" alt="${project.title}">
+
+                    <div class="modal-popup__desc">
+                        <h5>${project.title}</h5>
+                        <p>${project.description}</p>
+                        <ul class="modal-popup__cat">
+                            <li>${project.stacks.join('</li><li>')}</li>
+                        </ul>
+                    </div>
+        
+                    <a href="${project.link}" class="modal-popup__details">Project link</a>
+                </div>
+            </div>
+        `;
+
+        // document.getElementById('projects-list').insertAdjacentHTML('beforeend', projectElement);
+        // document.getElementById('projects-modals').insertAdjacentHTML('beforeend', modalElement);
+    });
+}
+
+function loadContent(id) {
+    const rawData = localStorage.getItem(id);
+    const element = document.getElementById(id);
+    document.querySelectorAll('#' + id).forEach(element => {
+        if (!element) return;
+        if (rawData && isValidJSON(rawData)) {
+            const data = JSON.parse(rawData);
+            if (data.html) {
+                element.innerHTML = data.value;
+            } else {
+                element.innerText = data.value;
+            }
+        }
+    });
+}
+
+function load_data() {
+    fetch(server_url + '/get-data', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        Object.entries(data).forEach(([key, value]) => {
+            // store properly with JSON.stringify
+            localStorage.setItem(key, JSON.stringify(value));
+        });
+    })
+    .then(() => {
+        loadProjects(JSON.parse(localStorage.getItem('projects')) || []);
+        loadExperiences(JSON.parse(localStorage.getItem('experience')) || []);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+}
+
+
+function observeElement(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadContent(id);
+                obs.disconnect();
+            }
+        });
+    });
+    observer.observe(el);
+}
+
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    function getStorageValue(key) {
+        let raw = localStorage.getItem(key);
+        if (!raw) return "";
+        try {
+            let parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === "object" && "value" in parsed) {
+                return parsed.value;
+            }
+        } catch (e) {
+        }
+        return raw;
+    }
+    document.querySelectorAll("*").forEach(el => {
+        if (el.childNodes.length) {
+            el.childNodes.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE && node.nodeValue.includes("{{")) {
+                    node.nodeValue = node.nodeValue.replace(/\{\{(.*?)\}\}/g, (_, key) => {
+                        return getStorageValue(key.trim());
+                    });
+                }
+            });
+        }
+        for (let attr of el.attributes) {
+            if (attr.value.includes("{{")) {
+                el.setAttribute(attr.name, attr.value.replace(/\{\{(.*?)\}\}/g, (_, key) => {
+                    return getStorageValue(key.trim());
+                }));
+            }
+        }
+    });
+    load_data();
+});
+
+function submitTestimonial(){
+    const name = document.getElementById('testimonial-name').value;
+    const position = document.getElementById('testimonial-position').value;
+    const company = document.getElementById('testimonial-company').value;
+    const message = document.getElementById('testimonial-message').value;
+
+    if (!name || !position || !message) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+    const fileInput = document.getElementById('testimonial-photo');
+    const file = fileInput.files[0];
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('position', position);
+    formData.append('company', company);
+    formData.append('message', message);
+    if (file) {
+        formData.append('photo', file);
+    }
+
+    fetch(server_url + '/submit-testimonial', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status_code === 200) {
+            alert("Testimonial submitted successfully!");
+            document.getElementById('testimonialModal').style.display = 'none';
+        } else {
+            alert("Failed to submit testimonial. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("An error occurred while submitting the testimonial.");
+    });
+
+    console.log("Submitting testimonial:", testimonial);
+}
+
+function openTestimonialModal() {
+    const modal = document.getElementById('testimonialModal');
+    modal.style.display = 'flex';
+    modal.style.opacity = '0';
+    modal.style.transition = 'opacity 0.3s ease-in-out';
+    requestAnimationFrame(() => {
+        modal.style.opacity = '1';
+    });
+}
+
+function openTestimonialViewModal(){
+    const modal = document.getElementById('viewTestimonialModal');
+    modal.style.display = 'flex';
+    modal.style.opacity = '0';
+    modal.style.transition = 'opacity 0.3s ease-in-out';
+    requestAnimationFrame(() => {
+        modal.style.opacity = '1';
+    });
+}
+
+document.querySelector('#close-testimonial-form').addEventListener('click', function() {
+    document.getElementById('testimonialModal').style.display = 'none';
+});
+
+document.querySelector('#closeViewTestimonial').addEventListener('click', function() {
+    document.getElementById('viewTestimonialModal').style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('testimonialModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+/* =================================================================== */
 
 (function(html) {
 
@@ -161,8 +483,6 @@
                 */
                 if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
                     document.querySelector(".main-nav a[href*=" + sectionId + "]").parentNode.classList.add("current");
-                } else {
-                    document.querySelector(".main-nav a[href*=" + sectionId + "]").parentNode.classList.remove("current");
                 }
             });
         }
@@ -362,3 +682,5 @@
     })();
 
 })(document.documentElement);
+
+
