@@ -16,13 +16,18 @@
         </div>
 
         <a href="#home" class="navbar-logo">
-          <span class="logo-text">
-            <span class="logo-zoom">
-              <span class="logo-version logo-lowercase"><span class="logo-highlight">A</span>bi</span>
-              <span class="logo-version logo-uppercase"><span class="logo-highlight">A</span>BI</span>
-            </span>shek <span class="logo-highlight">VP</span>
-          </span>
-        </a>
+              <span class="logo-text">
+                <span class="logo-zoom">
+                  <span class="logo-version logo-lowercase"><span class="logo-highlight">A</span>bi</span>
+                  <span class="logo-version logo-uppercase"><span class="logo-highlight">A</span>BI</span>
+                </span>
+                <span class="logo-middle">
+                  <span class="logo-version logo-shek">shek</span>
+                  <span class="logo-version logo-raj">RAJ</span>
+                </span>
+                <span> </span><span class="logo-highlight">VP</span>
+              </span>
+            </a>
 
         <button
           class="navbar-toggle"
@@ -113,6 +118,30 @@ export default {
 
 .logo-highlight {
   color: var(--color-accent-primary);
+}
+
+.logo-middle {
+  display: inline-block;
+  position: relative;
+}
+
+.logo-shek {
+  opacity: 1;
+}
+
+.logo-raj {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.navbar-logo:hover .logo-shek {
+  opacity: 0;
+}
+
+.navbar-logo:hover .logo-raj {
+  opacity: 0.2;
 }
 
 .logo-zoom {
