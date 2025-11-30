@@ -1,0 +1,226 @@
+{
+  "about": {
+    "sectionTitle": "About <span class=\"gradient-text\">Me</span>",
+    "sectionSubtitle": "Get to know me better",
+    "whatIDo": {
+      "title": "What I Do",
+      "items": [
+        "Platform & Backend Engineering",
+        "Identity Integrations (SSPR, Azure AD, LDAP, Google Workspace)",
+        "Secure Automation for DevOps & CI/CD Tools",
+        "Full-stack Development using Python & JavaScript"
+      ]
+    },
+    "bio": {
+      "title": "Platform Security & Software Engineer",
+      "paragraphs": [
+        "I’m Abishek VP, a software engineer specializing in platform security, identity integrations, and automation engineering. I work on building secure backend components, IAM workflows, and developer-friendly automation that simplifies authentication, directory management, and operational infrastructure.",
+        "I gained hands-on experience with SSPR, Azure AD/LDAP/Google Workspace integrations, directory sync, SCIM provisioning, and secure password workflows through real product implementations at Securden. I also build automation plugins for DevOps teams—covering Terraform, Jenkins, Ansible, Chef, and Puppet—for securely fetching and managing credentials in CI/CD pipelines.",
+        "My engineering journey spans backend development, integrations engineering, full-stack projects, and internal platform tools across multiple organizations. I enjoy solving problems around identity automation, secure communication flows, and reliable system design.",
+        "Outside work, I build tools, explore automation workflows, and mentor peers in software and security engineering."
+      ]
+    },
+    "highlights": [
+      {
+        "icon": "🛡️",
+        "title": "Security Focused",
+        "description": "SSPR & Identity Integrations"
+      },
+      {
+        "icon": "⚙️",
+        "title": "Automation",
+        "description": "DevOps & CI/CD Ecosystem"
+      },
+      {
+        "icon": "🏆",
+        "title": "Achievement",
+        "description": "SIH 2024 Winner"
+      }
+    ]
+  },
+  "skills": {
+    "sectionTitle": "Skills & <span class=\"gradient-text\">Expertise</span>",
+    "sectionSubtitle": "Technologies I work with",
+    "categories": [
+      {
+        "name": "Backend & Platform Engineering",
+        "icon": "⚙️",
+        "skills": [
+          {
+            "name": "Python / Django",
+            "learned": "Started through college projects and personal learning, later expanded through professional backend work.",
+            "implemented": "Developed backend components for SSPR flows, authentication layers, internal operations tools, and full-stack applications."
+          },
+          {
+            "name": "FastAPI / REST API Design",
+            "learned": "Built automation endpoints and experimented with modern API patterns.",
+            "implemented": "Created lightweight APIs for integration testing, backend services, and secure plugin interactions."
+          },
+          {
+            "name": "Database Systems (PostgreSQL, MongoDB, SQL)",
+            "learned": "Gained through application development, schema design, and production use cases.",
+            "implemented": "Used for operational data models, event metadata, directory sync records, logging, and project tools."
+          },
+          {
+            "name": "Systems & Architecture",
+            "learned": "Through working on multi-module security products and collaborating with senior engineers.",
+            "implemented": "Designed modular backend components, integration layers, and secure communication workflows."
+          }
+        ]
+      },
+      {
+        "name": "Identity & Access Management (IAM)",
+        "icon": "🛡️",
+        "skills": [
+          {
+            "name": "Azure AD, LDAP/AD, Google Workspace Integrations",
+            "learned": "Hands-on while implementing SSPR and identity workflows at Securden.",
+            "implemented": "Integrated Azure AD, LDAP, and Google Workspace for user lookups, password updates, group sync, and identity lifecycle operations."
+          },
+          {
+            "name": "OAuth2 / SAML / SCIM",
+            "learned": "Studied protocol behavior and implemented flows as part of identity integrations.",
+            "implemented": "Contributed to SCIM provisioning, OAuth2-based validations, and SSO-related interaction paths."
+          },
+          {
+            "name": "Security Engineering",
+            "learned": "Built secure modules involving credential handling, encryption, and validation mechanisms.",
+            "implemented": "Developed password operations, LDAPS connectors, vault interactions, and secure backend communication flows."
+          }
+        ]
+      },
+      {
+        "name": "DevOps, Automation & Tooling",
+        "icon": "🔧",
+        "skills": [
+          {
+            "name": "Terraform / IaC",
+            "learned": "While implementing infrastructure automation requirements for Securden integrations.",
+            "implemented": "Designed and developed a custom Terraform provider enabling secrets retrieval and attribute mapping."
+          },
+          {
+            "name": "Jenkins (CI/CD)",
+            "learned": "Through integrating secure workflows into CI pipelines.",
+            "implemented": "Built a Jenkins plugin for secure credential injection, automated validation, and token-based access."
+          },
+          {
+            "name": "Ansible / Chef / Puppet",
+            "learned": "By working closely on DevOps automation needs and extending configuration management ecosystems.",
+            "implemented": "Developed Ansible lookup plugin, Chef Ruby plugin, and Puppet module for secure credential retrieval."
+          }
+        ]
+      },
+      {
+        "name": "Frontend Engineering",
+        "icon": "💻",
+        "skills": [
+          {
+            "name": "HTML, CSS, JavaScript",
+            "learned": "Started during college and improved through building UI components and internal tools.",
+            "implemented": "Built dashboards, responsive interfaces, tools, and customer-facing workflows."
+          },
+          {
+            "name": "Browser Extensions",
+            "learned": "Through experimentation and solving product use cases.",
+            "implemented": "Developed secure Chrome/Firefox extensions for credential autofill with encrypted communication."
+          }
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Work <span class=\"gradient-text\">Experience</span>",
+    "sectionSubtitle": "My professional journey",
+    "jobs": [
+      {
+        "title": "Software Engineer",
+        "company": "Securden",
+        "period": "2022 – Present",
+        "description": "Platform Security • IAM • Integrations • Automation",
+        "achievements": [
+          "Implemented IAM components including SSPR flows, directory sync, Azure AD/LDAP/Google Workspace integrations, and identity lifecycle operations.",
+          "Developed automation plugins for Terraform, Jenkins, Ansible, Chef, and Puppet for secure credential retrieval in CI/CD ecosystems.",
+          "Contributed to SCIM provisioning, password update flows, and secure vault/LDAPS connectors.",
+          "Built secure browser extension modules for encrypted credential autofill and policy-controlled operations.",
+          "Enhanced backend modules across authentication, access policies, event logging, and secure communication."
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "DAAT",
+        "period": "2021 – 2022",
+        "description": "Backend & Platform Engineering",
+        "achievements": [
+          "Developed internal SaaS tools and operational automation platforms.",
+          "Worked on backend architecture, API integration, and UI features.",
+          "Improved data workflows, dashboards, and analytics systems."
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Rook Software",
+        "period": "2020 – 2021",
+        "description": "Full-Stack Development",
+        "achievements": [
+          "Built full-stack features using Python, Django, JavaScript, and SQL.",
+          "Delivered production-ready modules for customer applications.",
+          "Implemented dashboards, user authentication, APIs, and reporting features."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "sectionTitle": "Featured <span class=\"gradient-text\">Projects</span>",
+    "sectionSubtitle": "Some of my recent work",
+    "items": [
+      {
+        "id": 1,
+        "title": "Enterprise SSPR Platform",
+        "description": "Self-service password reset system with MFA validation and multi-directory integration (Azure AD, LDAP, Google Workspace). Reduced support effort through automation.",
+        "tags": ["Django", "Azure AD", "LDAP", "MFA", "SSPR"],
+        "demo": "#",
+        "github": "#"
+      },
+      {
+        "id": 2,
+        "title": "DevOps Secrets Automation",
+        "description": "Secure credential automation plugins for Terraform, Jenkins, Ansible, Chef, and Puppet—enabling token-based secret access in CI/CD workflows.",
+        "tags": ["Python", "Terraform", "Jenkins", "REST API"],
+        "demo": "#",
+        "github": "#"
+      },
+      {
+        "id": 3,
+        "title": "Secure Browser Extension",
+        "description": "Chrome/Firefox extension for encrypted credential autofill with domain isolation and policy-based access controls.",
+        "tags": ["JavaScript", "Browser APIs", "AES-GCM", "Security"],
+        "demo": "#",
+        "github": "#"
+      },
+      {
+        "id": 4,
+        "title": "GrantBase.gov.in – SIH Winner",
+        "description": "Government research grant intelligence platform with real-time scraping and domain-based filtering. Winner of Smart India Hackathon 2024.",
+        "tags": ["Django", "Selenium", "BeautifulSoup", "Real-time"],
+        "demo": "#",
+        "github": "#"
+      },
+      {
+        "id": 5,
+        "title": "Identity Provider Integrations",
+        "description": "Implemented identity integrations for Azure AD, Google Workspace, and LDAP including user lookup, group sync, and SCIM-based lifecycle actions.",
+        "tags": ["Azure AD", "Google Workspace", "SCIM", "SAML"],
+        "demo": "#",
+        "github": "#"
+      },
+      {
+        "id": 6,
+        "title": "LDAPS Connector for AD",
+        "description": "Secure LDAPS connector for Active Directory password write-back with throttling, retry logic, and enhanced validation.",
+        "tags": ["Python", "LDAP", "Active Directory", "Security"],
+        "demo": "#",
+        "github": "#"
+      }
+    ]
+  }
+}

@@ -2,13 +2,13 @@
   <section id="projects" class="section">
     <div class="container-wide">
       <div class="section-title">
-        <h2>Featured <span class="gradient-text">Projects</span></h2>
-        <p class="text-secondary">Some of my recent work</p>
+        <h2 v-html="projectsData.sectionTitle"></h2>
+        <p class="text-secondary">{{ projectsData.sectionSubtitle }}</p>
       </div>
 
       <div class="projects-grid">
         <div
-          v-for="project in projects"
+          v-for="project in projectsData.items"
           :key="project.id"
           class="project-card glass-card"
         >
@@ -51,66 +51,13 @@
 </template>
 
 <script>
+import portfolioData from "../data/portfolio.json";
+
 export default {
   name: "ProjectsSection",
   data() {
     return {
-      projects: [
-        {
-          id: 1,
-          title: "Enterprise SSPR Platform",
-          description:
-            "Secure self-service password reset platform with MFA, identity validation, and multi-directory integration (Azure AD, GWS, LDAP). Reduced helpdesk reset calls by 60%+.",
-          tags: ["Django", "Azure AD", "LDAP", "MFA", "SSPR"],
-          demo: "#",
-          github: "#",
-        },
-        {
-          id: 2,
-          title: "DevOps Secrets Automation",
-          description:
-            "Secure credential automation plugins for Terraform, Jenkins, Ansible, Chef, and Puppet. Eliminates hard-coded secrets in CI/CD pipelines with scoped tokens and rotation.",
-          tags: ["Python", "Terraform", "Jenkins", "REST API"],
-          demo: "#",
-          github: "#",
-        },
-        {
-          id: 3,
-          title: "Secure Browser Extension",
-          description:
-            "Enterprise credential autofill extension with AES-GCM encryption, domain isolation, policy-controlled access, and safe input injection for secure credential delivery.",
-          tags: ["JavaScript", "Browser APIs", "AES-GCM", "Security"],
-          demo: "#",
-          github: "#",
-        },
-        {
-          id: 4,
-          title: "GrantBase.gov.in – SIH Winner",
-          description:
-            "National research funding intelligence platform with real-time grant scraping, domain-based alerts, and zero stale storage. Winner of Smart India Hackathon 2024.",
-          tags: ["Django", "Selenium", "BeautifulSoup", "Real-time"],
-          demo: "#",
-          github: "#",
-        },
-        {
-          id: 5,
-          title: "Identity Provider Integrations",
-          description:
-            "Enterprise identity integrations with Azure AD, Google Workspace, and LDAP including user provisioning, group sync, and SCIM/SAML workflows.",
-          tags: ["Azure AD", "Google Workspace", "SCIM", "SAML"],
-          demo: "#",
-          github: "#",
-        },
-        {
-          id: 6,
-          title: "LDAPS Connector for AD",
-          description:
-            "Secure LDAPS connector for on-prem AD password write-back with throttling, brute force protection, and enterprise-grade audit logging.",
-          tags: ["Python", "LDAP", "Active Directory", "Security"],
-          demo: "#",
-          github: "#",
-        },
-      ],
+      projectsData: portfolioData.projects,
     };
   },
 };

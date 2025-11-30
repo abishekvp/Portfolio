@@ -2,70 +2,40 @@
   <section id="about" class="section">
     <div class="container">
       <div class="section-title">
-        <h2>About <span class="gradient-text">Me</span></h2>
-        <p class="text-secondary">Get to know me better</p>
+        <h2 v-html="aboutData.sectionTitle"></h2>
+        <p class="text-secondary">{{ aboutData.sectionSubtitle }}</p>
       </div>
 
       <div class="about-content">
         <div class="about-image-wrapper">
-
           <div class="what-i-do">
-            <h4>What I Do</h4>
+            <h4>{{ aboutData.whatIDo.title }}</h4>
             <ul>
-              <li>Platform Engineering & Backend Architecture</li>
-              <li>Identity & Access Management (SSPR, Azure AD, LDAP, GWS)</li>
-              <li>Secure Automation for DevOps & CI/CD Tools</li>
-              <li>Full-stack Product Development with Python & JavaScript</li>
+              <li v-for="(item, index) in aboutData.whatIDo.items" :key="index">
+                {{ item }}
+              </li>
             </ul>
           </div>
-
-
         </div>
 
         <div class="about-text">
-          <h3>Platform & Security Engineer</h3>
-          <p>
-            I'm Abishek VP, a Platform & Security Engineer specializing in
-            secure automations, cloud identity integrations, and enterprise
-            IAM-driven workflows. I build systems that combine platform
-            engineering with cybersecurity principles—focusing on SSPR modules,
-            DevOps credential automation, browser extension security, and
-            identity provider integrations.
+          <h3>{{ aboutData.bio.title }}</h3>
+          <p v-for="(paragraph, index) in aboutData.bio.paragraphs" :key="index">
+            {{ paragraph }}
           </p>
-          <p>
-            With experience across Python, Django, Terraform, Jenkins, Azure AD,
-            Google Workspace, React, and DevOps tooling, I deliver scalable and
-            secure solutions used in enterprise environments. I also won the
-            Smart India Hackathon 2024 for building a dynamic research funding
-            intelligence platform for government use.
-          </p>
-
-
-
-
         </div>
       </div>
 
       <div class="about-highlights">
-        <div class="highlight glass-card">
-          <div class="highlight-icon">🛡️</div>
+        <div
+          v-for="(highlight, index) in aboutData.highlights"
+          :key="index"
+          class="highlight glass-card"
+        >
+          <div class="highlight-icon">{{ highlight.icon }}</div>
           <div class="highlight-content">
-            <h4>Security First</h4>
-            <p>Enterprise IAM & SSPR</p>
-          </div>
-        </div>
-        <div class="highlight glass-card">
-          <div class="highlight-icon">⚙️</div>
-          <div class="highlight-content">
-            <h4>Automation</h4>
-            <p>DevOps CI/CD Integration</p>
-          </div>
-        </div>
-        <div class="highlight glass-card">
-          <div class="highlight-icon">🏆</div>
-          <div class="highlight-content">
-            <h4>Achievement</h4>
-            <p>SIH 2024 Winner</p>
+            <h4>{{ highlight.title }}</h4>
+            <p>{{ highlight.description }}</p>
           </div>
         </div>
       </div>
@@ -74,8 +44,15 @@
 </template>
 
 <script>
+import portfolioData from "../data/portfolio.json";
+
 export default {
   name: "AboutSection",
+  data() {
+    return {
+      aboutData: portfolioData.about,
+    };
+  },
 };
 </script>
 
@@ -94,10 +71,6 @@ export default {
   flex-direction: column;
   gap: var(--spacing-md);
 }
-
-
-
-
 
 .about-text {
   display: flex;

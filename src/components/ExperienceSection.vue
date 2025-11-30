@@ -2,20 +2,20 @@
   <section id="experience" class="section">
     <div class="container">
       <div class="section-title">
-        <h2>Work <span class="gradient-text">Experience</span></h2>
-        <p class="text-secondary">My professional journey</p>
+        <h2 v-html="experienceData.sectionTitle"></h2>
+        <p class="text-secondary">{{ experienceData.sectionSubtitle }}</p>
       </div>
 
       <div class="timeline">
         <div
-          v-for="(exp, index) in experiences"
+          v-for="(exp, index) in experienceData.jobs"
           :key="index"
           class="timeline-item"
         >
           <div class="timeline-marker">
             <div class="timeline-dot"></div>
             <div
-              v-if="index < experiences.length - 1"
+              v-if="index < experienceData.jobs.length - 1"
               class="timeline-line"
             ></div>
           </div>
@@ -46,50 +46,13 @@
 </template>
 
 <script>
+import portfolioData from "../data/portfolio.json";
+
 export default {
   name: "ExperienceSection",
   data() {
     return {
-      experiences: [
-        {
-          title: "Software Engineer",
-          company: "Securden",
-          period: "Aug 2024 – Present",
-          description:
-            "Building enterprise platform security modules including SSPR, IAM integrations, and DevOps automation tools.",
-          achievements: [
-            "Designed and built complete SSPR platform with identity validation, MFA, policy checks, and multi-directory integration",
-            "Developed secure LDAPS connector for on-prem AD password write-back with throttling and brute force protection",
-            "Built secure credential automation plugins for Terraform, Jenkins, Ansible, Chef, and Puppet",
-            "Implemented enterprise identity integrations with Azure AD, Google Workspace, and LDAP",
-            "Delivered secure browser extension features with encrypted storage and policy-controlled autofill",
-          ],
-        },
-        {
-          title: "Software Engineer",
-          company: "DAAT",
-          period: "2023 – 2024",
-          description:
-            "Developed internal SaaS automation tools and enterprise operations systems.",
-          achievements: [
-            "Engineered internal SaaS automation tools for enterprise operations",
-            "Built backend modules with secure RBAC controls using Django",
-            "Managed CI/CD deployments and optimized release pipelines",
-          ],
-        },
-        {
-          title: "Software Engineer",
-          company: "ROOK Software",
-          period: "2022 – 2023",
-          description:
-            "Full-stack development of client applications with secure authentication and payment workflows.",
-          achievements: [
-            "Developed full-stack Django + React client applications",
-            "Implemented secure authentication, payments, and user workflows",
-            "Deployed and maintained production systems across clients",
-          ],
-        },
-      ],
+      experienceData: portfolioData.experience,
     };
   },
 };
