@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--spacing-lg);
 }
 
@@ -68,6 +68,7 @@ export default {
 .category-header {
   display: flex;
   align-items: center;
+  justify-content: center; /* Center category title */
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
 }
@@ -82,7 +83,9 @@ export default {
 
 .skills-list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--spacing-md);
 }
 
@@ -95,6 +98,8 @@ export default {
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255, 250, 250, 0.05);
   transition: all var(--transition-base);
+  flex: 1 1 300px;
+  max-width: 400px;
 }
 
 .skill-item:hover {
@@ -135,9 +140,10 @@ export default {
   line-height: 1.5;
 }
 
-@media (max-width: 1024px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .skill-item {
+    flex-basis: 100%; /* Full width on mobile */
+    max-width: 100%;
   }
 }
 </style>
