@@ -152,14 +152,21 @@ export default {
 
 .tag {
   padding: 0.375rem 0.875rem;
-  background: rgba(158, 42, 43, 0.2);
-  border: 1px solid rgba(158, 42, 43, 0.3);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-tag-border);
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-accent-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+  cursor: default;
+}
+
+.tag:hover {
+  border-color: var(--color-accent-primary);
+  background: var(--color-tag-border);
 }
 
 @media (max-width: 1024px) {

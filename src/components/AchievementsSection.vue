@@ -66,7 +66,7 @@ export default {
 
 .achievement-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(158, 42, 43, 0.3);
+  border-color: var(--glass-border-hover);
   background: rgba(255, 250, 250, 0.05);
 }
 

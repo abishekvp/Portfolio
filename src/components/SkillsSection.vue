@@ -104,7 +104,7 @@ export default {
 
 .skill-item:hover {
   background: rgba(255, 250, 250, 0.05);
-  border-color: rgba(158, 42, 43, 0.3);
+  border-color: var(--glass-border-hover);
   transform: translateY(-2px);
 }
 

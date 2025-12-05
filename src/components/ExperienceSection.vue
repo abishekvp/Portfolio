@@ -87,7 +87,7 @@ export default {
   height: 20px;
   border-radius: 50%;
   background: var(--gradient-accent);
-  box-shadow: 0 0 20px rgba(158, 42, 43, 0.5);
+  box-shadow: 0 0 20px var(--color-scrollbar-thumb);
   z-index: 2;
 }
 
@@ -97,7 +97,7 @@ export default {
   background: linear-gradient(
     180deg,
     var(--color-accent-primary) 0%,
-    rgba(158, 42, 43, 0.3) 100%
+    var(--color-tag-border) 100%
   );
   margin-top: 0.5rem;
 }
@@ -128,7 +128,7 @@ export default {
   font-size: 0.875rem;
   color: var(--color-text-secondary);
   padding: 0.375rem 0.875rem;
-  background: rgba(158, 42, 43, 0.15);
+  background: var(--color-tag-bg);
   border-radius: var(--radius-sm);
   white-space: nowrap;
 }
