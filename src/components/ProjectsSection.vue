@@ -8,7 +8,7 @@
 
       <div class="projects-grid">
         <div
-          v-for="project in projectsData.items"
+          v-for="project in visibleProjects"
           :key="project.id"
           class="project-card glass-card"
         >
@@ -18,6 +18,7 @@
             </div>
             <div class="project-overlay">
               <a
+                v-if="project.demo"
                 :href="project.demo"
                 class="btn btn-primary btn-sm"
                 target="_blank"
@@ -26,6 +27,7 @@
                 Live Demo
               </a>
               <a
+                v-if="project.github"
                 :href="project.github"
                 class="btn btn-glass btn-sm"
                 target="_blank"
@@ -59,6 +61,11 @@ export default {
     return {
       projectsData: portfolioData.projects,
     };
+  },
+  computed: {
+    visibleProjects() {
+      return this.projectsData.items.filter((project) => !project.hidden);
+    },
   },
 };
 </script>
@@ -98,6 +105,8 @@ export default {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-text-secondary);
+  text-align: center;
+  padding: 1rem;
 }
 
 .project-overlay {

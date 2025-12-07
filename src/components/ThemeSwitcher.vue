@@ -4,6 +4,7 @@
       class="theme-toggle btn-glass" 
       @click="toggleDropdown"
       aria-label="Change Theme"
+      :style="{ '--theme-shadow': currentThemeShadow }"
     >
       <div class="color-preview" :style="{ background: currentThemeColor }"></div>
       <span class="theme-name">{{ currentThemeLabel }}</span>
@@ -32,9 +33,9 @@ export default {
   data() {
     return {
       isOpen: false,
-      currentTheme: 'default',
+      currentTheme: 'ocean',
       themes: [
-        { id: 'default', label: 'Neo Red', color: '#9e2a2b' },
+        { id: 'neored', label: 'Neo Red', color: '#9e2a2b' },
         { id: 'snow', label: 'Snow', color: '#ffffff' },
         { id: 'ocean', label: 'Ocean', color: '#0ea5e9' },
         { id: 'emerald', label: 'Emerald', color: '#10b981' },
@@ -52,10 +53,18 @@ export default {
     currentThemeLabel() {
         const theme = this.themes.find(t => t.id === this.currentTheme);
         return theme ? theme.label : 'Theme';
-    }
+    },
+    currentThemeShadow() {
+      const theme = this.themes.find((t) => t.id === this.currentTheme);
+      const hex = theme ? theme.color : "#9e2a2b";
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return `rgba(${r}, ${g}, ${b}, 0.6)`;
+    },
   },
   mounted() {
-    const savedTheme = localStorage.getItem('theme') || 'default';
+    const savedTheme = localStorage.getItem('theme') || 'ocean';
     this.setTheme(savedTheme);
   },
   methods: {
@@ -117,7 +126,7 @@ export default {
   background: rgba(20, 20, 20, 0.8);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px var(--theme-shadow);
 }
 
 .color-preview {

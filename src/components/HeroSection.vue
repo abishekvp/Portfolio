@@ -19,7 +19,7 @@
             <strong>Secure • Automate • Integrate • Scale</strong>
           </p>
           <div class="hero-cta animate-fade-in-up" style="animation-delay: 0.4s">
-            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#experience" class="btn btn-primary">Work Experience</a>
             <a href="#contact" class="btn btn-glass">Get In Touch</a>
           </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="hero-card glass-card animate-fade-in" style="animation-delay: 0.5s">
           <div class="hero-stats">
             <div class="stat">
-              <div class="stat-value gradient-text">3+</div>
+              <div class="stat-value gradient-text">4+</div>
               <div class="stat-label">Years Experience</div>
             </div>
             <div class="stat">
@@ -35,7 +35,7 @@
               <div class="stat-label">Production Projects</div>
             </div>
             <div class="stat">
-              <div class="stat-value gradient-text">5+</div>
+              <div class="stat-value gradient-text">5</div>
               <div class="stat-label">DevOps Tools Integrated</div>
             </div>
           </div>

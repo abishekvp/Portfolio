@@ -10,7 +10,6 @@
         <div class="contact-info">
           <div class="contact-card glass-card">
             <h3>{{ contactData.intro }}</h3>
-            <p>{{ contactData.intro }}</p>
             <p>{{ contactData.roles }}</p>
 
             <div class="contact-methods">

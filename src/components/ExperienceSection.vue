@@ -23,9 +23,33 @@
             <div class="timeline-header">
               <div>
                 <h3>{{ exp.title }}</h3>
-                <h4 class="company gradient-text">{{ exp.company }}</h4>
+                <h4 class="company gradient-text">
+                  <a
+                    v-if="exp.companyUrl"
+                    :href="exp.companyUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="company-link"
+                  >
+                    {{ exp.company }}
+                    <span class="link-icon">↗</span>
+                  </a>
+                  <span v-else>{{ exp.company }}</span>
+                </h4>
               </div>
-              <span class="period">{{ exp.period }}</span>
+
+              <div class="timeline-meta">
+                <span class="period">{{ exp.period }}</span>
+                <a
+                  v-if="exp.companyUrl"
+                  :href="exp.companyUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="period site-btn"
+                >
+                  Visit Site
+                </a>
+              </div>
             </div>
             <p>{{ exp.description }}</p>
             <div class="achievements">
@@ -133,6 +157,51 @@ export default {
   white-space: nowrap;
 }
 
+.timeline-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.site-btn {
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid transparent;
+}
+
+.site-btn:hover {
+  background: var(--color-tag-border);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent-primary);
+}
+
+.company-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: opacity var(--transition-fast);
+}
+
+.company-link:hover {
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-icon {
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
 .timeline-content > p {
   margin-bottom: var(--spacing-md);
   color: var(--color-text-secondary);
@@ -170,8 +239,17 @@ export default {
     align-items: start;
   }
 
+  .timeline-meta {
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
   .period {
-    align-self: start;
+    align-self: auto;
   }
 }
 </style>

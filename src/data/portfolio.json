@@ -6,9 +6,9 @@
       "title": "What I Do",
       "items": [
         "Platform & Backend Engineering",
-        "Identity Integrations (SSPR, Azure AD, LDAP, Google Workspace)",
-        "Secure Automation for DevOps & CI/CD Tools",
-        "Full-stack Development using Python & JavaScript"
+        "Identity Integrations (Active Directory, Azure AD and Google Workspace)",
+        "Secure API Integrations for DevOps & CI/CD Tools",
+        "Building comprehensive tech-driven software systems with Django, Selenium, BS4, and Python, combining automation, scraping, and modern software development."
       ]
     },
     "bio": {
@@ -104,7 +104,7 @@
           },
           {
             "name": "Ansible / Chef / Puppet",
-            "learned": "Through extending DevOps automation ecosystems.",
+            "learned": "Through integrationg DevOps tools.",
             "implemented": "Developed Ansible lookup plugin, Chef Ruby plugin, and Puppet module for secure credential retrieval."
           }
         ]
@@ -136,6 +136,7 @@
       {
         "title": "Software Engineer",
         "company": "Securden",
+        "companyUrl": "https://www.securden.com/",
         "period": "2022 – Present",
         "description": "Platform Security • IAM • Automation • Microservices",
         "achievements": [
@@ -150,6 +151,7 @@
       {
         "title": "Software Engineer",
         "company": "DAAT",
+        "companyUrl": "https://daat.group/",
         "period": "2021 – 2022",
         "description": "Backend & Platform Engineering",
         "achievements": [
@@ -160,6 +162,7 @@
       {
         "title": "Full-Stack Developer",
         "company": "ROOK",
+        "companyUrl": "https://rookhq.com/",
         "period": "2020 – 2021",
         "description": "Web Application Development",
         "achievements": [
@@ -186,16 +189,16 @@
           "BeautifulSoup",
           "Automation"
         ],
-        "demo": "#",
-        "github": "#"
+        "demo": "",
+        "github": "https://github.com/abishekvp/SIH_DR715"
       },
       {
         "id": 2,
         "title": "Web Automation for Academic Data Entry",
         "description": "Automation platform for uploading Excel data and filling student records into the OASIS college portal using Selenium. Eliminates manual entry for staff.",
         "tags": ["Python", "Selenium", "BS4", "Pandas", "Automation"],
-        "demo": "#",
-        "github": "#"
+        "demo": "",
+        "github": "https://github.com/abishekvp/Web-Automation-Streamlining-OASIS-Web-Portal"
       },
       {
         "id": 3,
@@ -208,16 +211,15 @@
           "Authentication",
           "Web Platform"
         ],
-        "demo": "#",
-        "github": "#"
+        "github": "https://github.com/abishekvp/legaltech"
       },
       {
         "id": 4,
         "title": "Mini Password Vault – Secure Sharing & Approvals",
         "description": "A small-scale password vault system enabling secure credential storage, encrypted sharing, access control, and approval workflows. Designed with security-first principles and built using Python/Django.",
         "tags": ["Python", "Django", "Encryption", "RBAC", "Workflow"],
-        "demo": "#",
-        "github": "#"
+        "github": "#",
+        "hidden": true
       }
     ]
   },
@@ -225,7 +227,7 @@
     "sectionTitle": "Get In <span class=\"gradient-text\">Touch</span>",
     "sectionSubtitle": "Let's work together",
     "intro": "If you'd like to collaborate, discuss opportunities, or build secure platform systems — feel free to reach out.",
-    "roles": "I'm open to roles in Platform Engineering, Security Engineering, IAM, DevOps Automation, and Product Engineering.",
+    "roles": "I'm open to roles in Platform Engineering, Security Engineering, Identity provider integrations, DevOps tools integration, and Product Engineering.",
     "methods": [
       {
         "name": "Email",
