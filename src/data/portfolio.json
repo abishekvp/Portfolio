@@ -49,7 +49,7 @@
             "implemented": "Developed backend modules for SSPR, JIT workflows, password vault operations, authentication layers, and internal tools."
           },
           {
-            "name": "FastAPI / REST API Design",
+            "name": "API Design",
             "learned": "Built automation endpoints and explored modern API structuring.",
             "implemented": "Created microservices and integration APIs for secure platform operations."
           },
@@ -67,7 +67,7 @@
       },
 
       {
-        "name": "Identity & Access Management (IAM)",
+        "name": "Platform Integrations",
         "icon": "🛡️",
         "skills": [
           {
@@ -76,9 +76,9 @@
             "implemented": "Integrated providers for password reset, directory sync, user lookup, and lifecycle operations."
           },
           {
-            "name": "OAuth2 / SAML / SCIM",
-            "learned": "Studied protocols and implemented identity lifecycle processes.",
-            "implemented": "Developed SCIM provisioning flows, OAuth2-based validations, identity sync modules, and SSO interactions."
+            "name": "Selenium / Playwright / BS4",
+            "learned": "Learned through building real-world automation workflows for data extraction, system interaction, and browser-driven integrations.",
+            "implemented": "Implemented browser automation for secure portal interactions, form-driven data entry automation, real-time data scraping, and integration validation across multiple web platforms."
           },
           {
             "name": "Security Engineering",
@@ -137,8 +137,8 @@
         "title": "Software Engineer",
         "company": "Securden",
         "companyUrl": "https://www.securden.com/",
-        "period": "2022 – Present",
-        "description": "Platform Security • IAM • Automation • Microservices",
+        "period": "2024 – Present",
+        "description": "Security Platform • AD/Azure/Google Workspace • DevOps • Microservices",
         "achievements": [
           "Designed and built enterprise Self-Service Password Reset (SSPR) platform with multi-directory support.",
           "Developed Password Vault workflows including JIT access, approval workflows, and secure policy-based access.",
@@ -152,7 +152,7 @@
         "title": "Software Engineer",
         "company": "DAAT",
         "companyUrl": "https://daat.group/",
-        "period": "2021 – 2022",
+        "period": "2022 – 2024",
         "description": "Backend & Platform Engineering",
         "achievements": [
           "Developed SaaS tools and Students Management System.",
@@ -163,7 +163,7 @@
         "title": "Full-Stack Developer",
         "company": "ROOK",
         "companyUrl": "https://rookhq.com/",
-        "period": "2020 – 2021",
+        "period": "2020 – 2022",
         "description": "Web Application Development",
         "achievements": [
           "Built full-stack modules using Django, JavaScript, and SQL.",
