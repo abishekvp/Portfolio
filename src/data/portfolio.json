@@ -140,12 +140,11 @@
         "period": "2024 – Present",
         "description": "Security Platform • AD/Azure/Google Workspace • DevOps • Microservices",
         "achievements": [
-          "Designed and built enterprise Self-Service Password Reset (SSPR) platform with multi-directory support.",
-          "Developed Password Vault workflows including JIT access, approval workflows, and secure policy-based access.",
-          "Implemented microservice-based backend modules for identity, workflow automation, and secure communication.",
-          "Developed identity provider integrations for Azure AD, Google Workspace, and Active Directory.",
-          "Built plugins for Terraform, Jenkins, Ansible, Chef, and Puppet to fetch secrets securely in CI/CD workflows.",
-          "Developed secure browser extension modules for encrypted credential autofill."
+          "Worked on designing and building enterprise Self-Service Password Reset (SSPR) platform with multi-directory support.",
+          "Worked on enhancing Password Vault workflows including JIT access, approval workflows, and secure policy-based access.",
+          "Worked on identity provider enhancement along with integrations for Azure AD, Google Workspace, and Active Directory.",
+          "Built plugins for Terraform, Jenkins, Ansible, Chef, and Puppet to fetch and CRUD operation on secrets securely in CI/CD workflows.",
+          "Worked on developing secure browser extension modules for user-friendly encrypted credential autofill eco."
         ]
       },
       {
@@ -155,20 +154,23 @@
         "period": "2022 – 2024",
         "description": "Backend & Platform Engineering",
         "achievements": [
-          "Developed SaaS tools and Students Management System.",
-          "Implemented backend services and operational workflows."
+          "Led juniors towards delivering robust and scalable with excluding tech barrier with multiple technologies and tools to build a Dynamic flawless Software.",
+          "Rebuilt brand softwares with microservices architecture.",
+          "Built SaaS tools and Students Management System.",
+          "Designed and implemented backend services and operational workflows.",
+          "Delivered production-ready features for SaaS platform."
         ]
       },
       {
-        "title": "Full-Stack Developer",
+        "title": "Software Engineer",
         "company": "ROOK",
         "companyUrl": "https://rookhq.com/",
         "period": "2020 – 2022",
         "description": "Web Application Development",
         "achievements": [
           "Built full-stack modules using Django, JavaScript, and SQL.",
-          "Developed authentication, dashboards, and reporting tools.",
-          "Delivered production-ready frontend and backend features."
+          "Designed and built enterprise Self-Service Password Reset (SSPR) platform with multi-directory support.",
+          "Delivered production-ready features for web application."
         ]
       }
     ]
@@ -202,7 +204,7 @@
       },
       {
         "id": 3,
-        "title": "LEGALTECH – Technology in Law & Order",
+        "title": "LEGALTECH – Technology implementation in Law firms",
         "description": "A platform connecting legal professionals and clients. Lawyers manage case records; users find advocates based on case history and receive legal guidance on the platform.",
         "tags": [
           "Django",
@@ -212,14 +214,6 @@
           "Web Platform"
         ],
         "github": "https://github.com/abishekvp/legaltech"
-      },
-      {
-        "id": 4,
-        "title": "Mini Password Vault – Secure Sharing & Approvals",
-        "description": "A small-scale password vault system enabling secure credential storage, encrypted sharing, access control, and approval workflows. Designed with security-first principles and built using Python/Django.",
-        "tags": ["Python", "Django", "Encryption", "RBAC", "Workflow"],
-        "github": "#",
-        "hidden": true
       }
     ]
   },

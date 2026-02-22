@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      currentTheme: 'ocean',
+      currentTheme: 'neored',
       themes: [
         { id: 'neored', label: 'Neo Red', color: '#9e2a2b' },
         { id: 'snow', label: 'Snow', color: '#ffffff' },
