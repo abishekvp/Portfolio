@@ -6,17 +6,17 @@
       "title": "What I Do",
       "items": [
         "Platform & Backend Engineering",
-        "Identity Integrations (Active Directory, Azure AD and Google Workspace)",
+        "Identity Integrations (Active Directory, Entra ID, and Google Workspace)",
         "Secure API Integrations for DevOps & CI/CD Tools",
-        "Building comprehensive tech-driven software systems with Django, Selenium, BS4, and Python, combining automation, scraping, and modern software development."
+        "Building robust, security-first software systems with Django, Selenium, BS4, and Python."
       ]
     },
     "bio": {
       "title": "Platform Security & Software Engineer",
       "paragraphs": [
-        "I’m Abishek VP, a software engineer specializing in platform security, identity integrations, workflow automation, and secure backend engineering. I design and build IAM workflows, password automation, and platform components that handle authentication, directory management, approval flows, and secure communication.",
-        "At Securden, I built enterprise-grade IAM capabilities including SSPR, identity provider integrations, directory sync, JIT access workflows, approval engines, password vault operations, and microservices supporting secure platform features. I also develop automation plugins for Terraform, Jenkins, Ansible, Chef, and Puppet for dynamic credential retrieval inside CI/CD ecosystems.",
-        "My experience spans backend development, identity engineering, platform integrations, DevOps automation, and full-stack solutions across multiple organizations. I enjoy solving challenging problems in secure communication, identity lifecycle management, automation workflows, and distributed system reliability.",
+        "I'm Abishek VP, a senior software engineer specializing in building robust solutions with a security-first backend architecture, platform security, identity integrations, and workflow automation. I design and build PAM (Privileged Access Management) workflows, password automation, and platform components that handle authentication, directory management, approval flows, and secure communication.",
+        "At Securden, I build enterprise-grade PAM capabilities including Password Self-Service, identity provider integrations, directory sync, JIT access workflows, approval engines, password vault operations, and microservices supporting secure platform features. I also develop automation plugins for Terraform, Jenkins, Ansible, Chef, and Puppet for dynamic credential retrieval inside CI/CD ecosystems.",
+        "My experience spans backend development, identity engineering, platform integrations, DevOps automation, and full-stack solutions across multiple organizations. I enjoy solving challenging problems in secure communication, identity lifecycle management, automation workflows, and building distributed, highly reliable systems.",
         "Outside work, I build tools, explore automation workflows, guide students and juniors, and mentor peers in software engineering."
       ]
     },
@@ -24,14 +24,18 @@
       {
         "icon": "🛡️",
         "title": "Security Focused",
-        "description": "SSPR, Password Vault & Identity Integrations"
+        "description": "SSPR, PAM Vault & Identity Integrations"
       },
       {
         "icon": "⚙️",
         "title": "Automation",
         "description": "DevOps Plugins & Workflow Engines"
       },
-      { "icon": "🏆", "title": "Achievement", "description": "SIH 2024 Winner" }
+      { 
+        "icon": "🏆", 
+        "title": "Achievement", 
+        "description": "SIH 2022 Winner" 
+      }
     ]
   },
 
@@ -51,12 +55,12 @@
           {
             "name": "API Design",
             "learned": "Built automation endpoints and explored modern API structuring.",
-            "implemented": "Created microservices and integration APIs for secure platform operations."
+            "implemented": "Created microservices and extended integration APIs for secure PAM operations."
           },
           {
-            "name": "Database Systems (PostgreSQL, MongoDB, SQL)",
+            "name": "Database Systems (PostgreSQL, MongoDB, SQL Server, SQL)",
             "learned": "Through real-world application development and schema design.",
-            "implemented": "Used for IAM metadata, event logs, workflow state, access trails, and automation systems."
+            "implemented": "Used for PAM metadata, event logs, workflow state, access trails, and automation systems."
           },
           {
             "name": "Systems & Architecture",
@@ -71,14 +75,14 @@
         "icon": "🛡️",
         "skills": [
           {
-            "name": "Azure AD, Active Directory & Google Workspace Integrations",
+            "name": "Entra ID, Active Directory & Google Workspace Integrations",
             "learned": "Gained through implementing identity workflows and provider integrations.",
             "implemented": "Integrated providers for password reset, directory sync, user lookup, and lifecycle operations."
           },
           {
             "name": "Selenium / Playwright / BS4",
             "learned": "Learned through building real-world automation workflows for data extraction, system interaction, and browser-driven integrations.",
-            "implemented": "Implemented browser automation for secure portal interactions, form-driven data entry automation, real-time data scraping, and integration validation across multiple web platforms."
+            "implemented": "Implemented browser automation for secure portal interactions, form-driven data entry automation, real-time data scraping, and integration validation."
           },
           {
             "name": "Security Engineering",
@@ -95,17 +99,17 @@
           {
             "name": "Terraform / IaC",
             "learned": "Through building integration and automation modules.",
-            "implemented": "Developed a custom Terraform provider enabling secure secrets retrieval and attribute mapping."
+            "implemented": "Developed a custom Terraform plugin enabling secure secrets retrieval."
           },
           {
             "name": "Jenkins (CI/CD)",
             "learned": "While integrating secure workflows into pipelines.",
-            "implemented": "Built a Jenkins plugin enabling token-based secure credential injection."
+            "implemented": "Built a Jenkins plugin enabling secure credential injection."
           },
           {
             "name": "Ansible / Chef / Puppet",
-            "learned": "Through integrationg DevOps tools.",
-            "implemented": "Developed Ansible lookup plugin, Chef Ruby plugin, and Puppet module for secure credential retrieval."
+            "learned": "Through integrating DevOps tools.",
+            "implemented": "Developed Ansible plugins, Chef plugins, and Puppet modules for secure credential retrieval."
           }
         ]
       },
@@ -115,14 +119,14 @@
         "icon": "💻",
         "skills": [
           {
-            "name": "HTML, CSS, JavaScript",
+            "name": "HTML, CSS, JavaScript, React, Ember",
             "learned": "Started during college and improved through building UI and workflow screens.",
             "implemented": "Built dashboards, responsive pages, automation UX, and customer-facing modules."
           },
           {
             "name": "Browser Extensions",
             "learned": "Through solving product requirements.",
-            "implemented": "Developed secure Edge, Chrome, and Firefox extension modules for encrypted credential autofill and domain isolation."
+            "implemented": "Enhanced capabilities to improve user experience and security. Built a custom magnifier script to improve production speed and neglect external dependencies."
           }
         ]
       }
@@ -134,17 +138,17 @@
     "sectionSubtitle": "My professional journey",
     "jobs": [
       {
-        "title": "Software Engineer",
+        "title": "Senior Software Engineer",
         "company": "Securden",
         "companyUrl": "https://www.securden.com/",
         "period": "2024 – Present",
-        "description": "Security Platform • AD/Azure/Google Workspace • DevOps • Microservices",
+        "description": "Privileged Access Management (PAM) • AD/Entra ID/Google Workspace • DevOps",
         "achievements": [
-          "Worked on designing and building enterprise Self-Service Password Reset (SSPR) platform with multi-directory support.",
-          "Worked on enhancing Password Vault workflows including JIT access, approval workflows, and secure policy-based access.",
-          "Worked on identity provider enhancement along with integrations for Azure AD, Google Workspace, and Active Directory.",
-          "Built plugins for Terraform, Jenkins, Ansible, Chef, and Puppet to fetch and CRUD operation on secrets securely in CI/CD workflows.",
-          "Worked on developing secure browser extension modules for user-friendly encrypted credential autofill eco."
+          "Actively developing PAM solutions and extending core API capabilities.",
+          "Architected and built a new production-ready Password Self-Service edition from scratch, including custom bundling tools to eliminate external dependencies.",
+          "Engineered and enhanced identity provider integrations with Active Directory, Entra ID, and Google Workspace.",
+          "Built and published plugins for Ansible, Jenkins, Terraform, Puppet, and Chef to extend product features and improve user experience.",
+          "Enhanced browser extension capabilities and created a custom extension magnifier script to accelerate production speed and secure product files."
         ]
       },
       {
@@ -152,13 +156,11 @@
         "company": "DAAT",
         "companyUrl": "https://daat.group/",
         "period": "2022 – 2024",
-        "description": "Backend & Platform Engineering",
+        "description": "Backend Engineering & Team Leadership",
         "achievements": [
-          "Led juniors towards delivering robust and scalable with excluding tech barrier with multiple technologies and tools to build a Dynamic flawless Software.",
-          "Rebuilt brand softwares with microservices architecture.",
-          "Built SaaS tools and Students Management System.",
-          "Designed and implemented backend services and operational workflows.",
-          "Delivered production-ready features for SaaS platform."
+          "Consistently delivered scalable, robust software products within strict project deadlines.",
+          "Led and mentored junior developers, fostering collaborative team values and providing hands-on technical guidance.",
+          "Architected and built an internal project management tool alongside junior developers, eliminating external tool dependencies while providing real-time software development experience."
         ]
       },
       {
@@ -168,9 +170,29 @@
         "period": "2020 – 2022",
         "description": "Web Application Development",
         "achievements": [
-          "Built full-stack modules using Django, JavaScript, and SQL.",
-          "Designed and built enterprise Self-Service Password Reset (SSPR) platform with multi-directory support.",
-          "Delivered production-ready features for web application."
+          "Built and deployed internal brand websites.",
+          "Successfully developed and delivered customized client projects.",
+          "Conducted comprehensive market and feasibility studies for internal company products."
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Madras Defense Academy",
+        "companyUrl": "",
+        "period": "Prior Experience",
+        "description": "Product Engineering",
+        "achievements": [
+          "Built a comprehensive educational management product handling student administration, study material distribution, and a dedicated student forum."
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Fineques",
+        "companyUrl": "",
+        "period": "Prior Experience",
+        "description": "Web Development",
+        "achievements": [
+          "Updated and maintained internal brand websites."
         ]
       }
     ]
@@ -183,7 +205,7 @@
       {
         "id": 1,
         "title": "GrantBase.gov.in – SIH Winner",
-        "description": "Government research grant intelligence platform fetching real-time grant data from multiple portals. Provides domain-based recommendations and alerts for researchers. Winner of Smart India Hackathon 2024.",
+        "description": "Government research grant intelligence platform fetching real-time grant data from multiple portals. Provides domain-based recommendations and alerts for researchers. Winner of Smart India Hackathon 2022 (Senior Software Edition).",
         "tags": [
           "Django",
           "Web Scraping",
@@ -220,7 +242,7 @@
   "contact": {
     "sectionTitle": "Get In <span class=\"gradient-text\">Touch</span>",
     "sectionSubtitle": "Let's work together",
-    "intro": "If you'd like to collaborate, discuss opportunities, or build secure platform systems — feel free to reach out.",
+    "intro": "If you'd like to collaborate, discuss opportunities, or build robust and secure software solutions — feel free to reach out.",
     "roles": "I'm open to roles in Platform Engineering, Security Engineering, Identity provider integrations, DevOps tools integration, and Product Engineering.",
     "methods": [
       {
@@ -232,8 +254,8 @@
       {
         "name": "LinkedIn",
         "icon": "💼",
-        "value": "linkedin.com/in/abishek-vp-34a368200",
-        "link": "https://www.linkedin.com/in/abishek-vp-34a368200/"
+        "value": "linkedin.com/in/abishek-v-p-34a368200",
+        "link": "https://www.linkedin.com/in/abishek-v-p-34a368200/"
       },
       {
         "name": "GitHub",
