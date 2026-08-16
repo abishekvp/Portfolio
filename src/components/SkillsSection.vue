@@ -24,11 +24,11 @@
             >
               <h4 class="skill-name">{{ skill.name }}</h4>
               <div class="skill-details">
-                <div class="detail-row">
+                <div class="detail-row" v-if="skill.learned">
                   <span class="detail-label">How I Learned:</span>
                   <p class="detail-text">{{ skill.learned }}</p>
                 </div>
-                <div class="detail-row">
+                <div class="detail-row" v-if="skill.implemented">
                   <span class="detail-label">Where Implemented:</span>
                   <p class="detail-text">{{ skill.implemented }}</p>
                 </div>
