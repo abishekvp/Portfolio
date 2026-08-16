@@ -16,7 +16,7 @@
             Platform Engineering • Security Integrations • Automation
           </p>
           <p class="hero-description animate-fade-in-up" style="animation-delay: 0.3s">
-            I design and build secure platform systems, IAM workflows, DevOps automation modules, and enterprise identity integrations. Currently working at Securden, building SSPR platforms, secure credential automation pipelines, and cloud-based security integrations.
+            I design and build secure platform systems, DevOps automation modules, and enterprise identity integrations. Currently working at Securden, building SSPR platforms, secure credential automation pipelines, and cloud-based security integrations.
           </p>
           <p class="hero-tagline animate-fade-in-up" style="animation-delay: 0.35s">
             <strong>Secure • Integrate • Automate • Scale</strong>
