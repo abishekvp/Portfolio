@@ -1,6 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [vue()],
+  build: {
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {}
+  },
+  server: {
+    port: 5173,
+    open: true,
+  },
+});

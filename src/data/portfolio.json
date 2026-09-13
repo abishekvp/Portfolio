@@ -1,0 +1,266 @@
+{
+  "about": {
+    "sectionTitle": "About <span class=\"gradient-text\">Me</span>",
+    "sectionSubtitle": "Professional Summary",
+    "whatIDo": {
+      "title": "Core Expertise",
+      "items": [
+        "Backend Architecture: Designing high-throughput, secure, and resilient enterprise applications.",
+        "Enterprise Integrations: Seamlessly connecting and integrating extensive DevOps toolchains.",
+        "Identity Providers: Implementing and managing Identity Provider (IdP) integrations.",
+        "Automated Tooling: Scripting automations and streamlining workflows with Playwright, BeautifulSoup4, and Selenium, alongside DevOps tools such as Ansible, Jenkins, Terraform, Chef, and Puppet."
+      ]
+    },
+    "bio": {
+      "title": "Software Engineer",
+      "paragraphs": [
+        "Software Engineer specializing in the architecture and development of robust enterprise security solutions, secure backend systems, and comprehensive DevOps integrations.",
+        "Over 4 years of experience driving backend development, security engineering, and cross-platform solutions.",
+        "Proven track record of building secure credential automation pipelines, enhancing password vault workflows, and delivering highly scalable engineering platforms at Securden."
+      ]
+    },
+    "highlights": [
+      {
+        "icon": "🛡️",
+        "title": "Security Engineering",
+        "description": "Platform Integrations & DevOps Integration"
+      },
+      {
+        "icon": "🏆",
+        "title": "Achievement",
+        "description": "SIH 2022 Winner"
+      },
+      {
+        "icon": "🎓",
+        "title": "Mentorship",
+        "description": "Peer Mentorship & Jury Member"
+      }
+    ]
+  },
+  "skills": {
+    "sectionTitle": "Core <span class=\"gradient-text\">Competencies</span>",
+    "sectionSubtitle": "Technologies I work with",
+    "categories": [
+      {
+        "name": "Backend & Platform",
+        "icon": "⚙️",
+        "skills": [
+          {
+            "name": "Python / Django",
+            "learned": "",
+            "implemented": ""
+          },
+          {
+            "name": "API Design",
+            "learned": "",
+            "implemented": ""
+          },
+          {
+            "name": "Database (SQL, PostgreSQL, MongoDB)",
+            "learned": "",
+            "implemented": ""
+          },
+          {
+            "name": "Web Automation (Selenium, BS4, Playwright)",
+            "learned": "",
+            "implemented": ""
+          }
+        ]
+      },
+      {
+        "name": "Identity Providers",
+        "icon": "🛡️",
+        "skills": [
+          {
+            "name": "Active Directory",
+            "learned": "",
+            "implemented": ""
+          },
+          {
+            "name": "Entra ID",
+            "learned": "",
+            "implemented": ""
+          },
+          {
+            "name": "Google Workspace",
+            "learned": "",
+            "implemented": ""
+          }
+        ]
+      },
+      {
+        "name": "DevOps Tools",
+        "icon": "🔧",
+        "skills": [
+          {
+            "name": "Ansible, Jenkins, Terraform, Chef, Puppet",
+            "learned": "",
+            "implemented": "Built Plugin and Published"
+          }
+        ]
+      },
+      {
+        "name": "Other Stacks",
+        "icon": "💻",
+        "skills": [
+          {
+            "name": "Java, C, C++",
+            "learned": "",
+            "implemented": ""
+          },
+          {
+            "name": "React, Ember, JavaScript",
+            "learned": "",
+            "implemented": ""
+          },
+          {
+            "name": "HTML, CSS",
+            "learned": "",
+            "implemented": ""
+          }
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Work <span class=\"gradient-text\">Experience</span>",
+    "sectionSubtitle": "My professional journey",
+    "jobs": [
+      {
+        "title": "Software Engineer",
+        "company": "Securden",
+        "companyUrl": "https://www.securden.com/",
+        "period": "March 2024 – Present",
+        "description": "PAM • AD/Azure/Google Workspace • DevOps Integrations • Password Self-Service • API",
+        "achievements": [
+          "Architected and built an enterprise-grade Self-Service Password Reset (SSPR) platform with multi-directory support, focusing on high availability and secure architecture.",
+          "Engineered robust Password Vault workflows, implementing Just-In-Time (JIT) access, complex approval chains, and secure, policy-based access controls.",
+          "Developed secure architectural integrations for major identity providers, including Azure AD, Google Workspace, and Active Directory, ensuring seamless and safe data synchronization.",
+          "Built and maintained custom infrastructure plugins for Terraform, Jenkins, Ansible, Chef, and Puppet to enable secure CRUD operations on secrets within CI/CD pipelines.",
+          "Enhanced secure browser extension, creating encrypted and user-friendly credential autofill ecosystem."
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "DAAT",
+        "companyUrl": "https://daat.group/",
+        "period": "May 2022 – Feb 2024",
+        "description": "Backend & Platform Engineering",
+        "achievements": [
+          "Mentored junior developers to deliver scalable backend solutions, successfully navigating complex technical requirements across diverse tech stacks.",
+          "Designed and implemented backend operational workflows, delivering production-ready features for a high-traffic SaaS platform and a Student Management System.",
+          "Spearheaded the rebuilding of legacy software and websites, with minimal resources to significantly improve overall system efficiency and modernizing the UI/UX.",
+          "Architected and single-handedly developed a custom internal project management tool to streamline organizational workflows, task tracking, and team collaboration."
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "ROOK",
+        "companyUrl": "https://rookhq.com/",
+        "period": "Aug 2020 – Apr 2022",
+        "description": "Web Application Development",
+        "achievements": [
+          "Developed full-stack application modules using Python, Django, JavaScript, and SQL, driving features from market research to production deployment.",
+          "Delivered robust, production-ready backend features for consumer-facing web applications.",
+          "Rebuilt and modernized brand software interfaces, improving user experience and application performance."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "sectionTitle": "Featured <span class=\"gradient-text\">Projects</span>",
+    "sectionSubtitle": "Some of my recent work",
+    "items": [
+      {
+        "id": 1,
+        "title": "GrantBase.gov.in – SIH Winner",
+        "description": "Built a government research grant intelligence platform that fetches real-time grant data from multiple portals. Engineered the backend to provide domain-based recommendations and automated alerts for researchers.",
+        "tags": [
+          "Django",
+          "BS4",
+          "GitHub"
+        ],
+        "demo": "",
+        "github": "https://github.com/abishekvp/SIH_DR715"
+      },
+      {
+        "id": 2,
+        "title": "Web Automation for Academic Data Entry",
+        "description": "Developed an automation platform to parse Excel data and automatically populate student records into the OASIS college portal, completely eliminating manual data entry tasks for administrative staff.",
+        "tags": [
+          "Django",
+          "Selenium",
+          "BS4",
+          "Pandas",
+          "GitHub"
+        ],
+        "demo": "",
+        "github": "https://github.com/abishekvp/Web-Automation-Streamlining-OASIS-Web-Portal"
+      },
+      {
+        "id": 3,
+        "title": "LEGALTECH – Software Implementation in Law firms",
+        "description": "Engineered a platform bridging legal professionals and clients. Built backend features allowing lawyers to manage case records securely and enabling users to find advocates based on historical case data.",
+        "tags": [
+          "Django",
+          "Selenium",
+          "SQL",
+          "GitHub"
+        ],
+        "github": "https://github.com/abishekvp/legaltech"
+      }
+    ]
+  },
+  "contact": {
+    "sectionTitle": "Get In <span class=\"gradient-text\">Touch</span>",
+    "sectionSubtitle": "Let's work together",
+    "intro": "If you'd like to collaborate, discuss opportunities, or build robust and secure software solutions — feel free to reach out.",
+    "roles": "I'm open to roles in Platform Engineering, Security Engineering, Identity provider integrations, DevOps tools integration, and Product Engineering.",
+    "methods": [
+      {
+        "name": "Email",
+        "icon": "📧",
+        "value": "contact@abishek.in",
+        "link": "mailto:contact@abishek.in"
+      },
+      {
+        "name": "Phone",
+        "icon": "📱",
+        "value": "+91 72002 63991",
+        "link": "tel:+917200263991"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "💼",
+        "value": "LinkedIn",
+        "link": "https://linkedin.com/in/abishek-v-p"
+      },
+      {
+        "name": "GitHub",
+        "icon": "💻",
+        "value": "github.com/abishekvp",
+        "link": "https://github.com/abishekvp"
+      },
+      {
+        "name": "Instagram",
+        "icon": "📷",
+        "value": "abiraj.vp06",
+        "link": "https://instagram.com/abiraj.vp06"
+      }
+    ],
+    "socials": [
+      {
+        "name": "GitHub",
+        "link": "https://github.com/abishekvp"
+      },
+      {
+        "name": "LinkedIn",
+        "link": "https://linkedin.com/in/abishek-v-p"
+      },
+      {
+        "name": "Instagram",
+        "link": "https://instagram.com/abiraj.vp06"
+      }
+    ]
+  }
+}
